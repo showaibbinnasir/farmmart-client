@@ -15,8 +15,10 @@ const IntroOne = () => {
                     <h1 className='text-md lg:text-xl text-justify'>Here you can find your favourite
                         animals and their needs to grow
                         your business.</h1>
-                        <br />
-                    <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-5 py-2 rounded-tl-xl rounded-br-xl shadow-lg' >About</button>
+                    <br />
+                    <div className='flex justify-center lg:justify-start'>
+                        <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-5 py-2 rounded-tl-xl rounded-br-xl shadow-lg' >About</button>
+                    </div>
                 </div>
             </div>
         </div>
