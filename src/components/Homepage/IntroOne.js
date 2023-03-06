@@ -1,6 +1,7 @@
 import React from 'react';
 
 const IntroOne = () => {
+    
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 justify-center items-center'>
             <div className='flex justify-center lg:justify-end'>

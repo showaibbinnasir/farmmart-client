@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Posts from './Posts';
 
 const AnimalSection = () => {
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        fetch('posts.json')
+            .then(res => res.json())
+            .then(data => setPosts(data))
+    }, [])
+
+    
     return (
         <div>
             <div className='flex justify-center lg:justify-center mt-10'>
@@ -13,6 +22,11 @@ const AnimalSection = () => {
                         <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-tl-xl rounded-br-xl shadow-lg' >see all</button>
                     </div>
                 </div>
+            </div>
+            <div>
+                {
+                    posts.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                }
             </div>
         </div>
     );
