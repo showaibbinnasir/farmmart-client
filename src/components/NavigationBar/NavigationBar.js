@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavigationBar = () => {
     return (
-        <div className="navbar bg-gradient-to-r from-[#3F55A5] to-[#A3519F]">
+        <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F]">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost text-white lg:hidden">
