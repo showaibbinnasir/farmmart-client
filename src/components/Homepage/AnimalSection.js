@@ -45,6 +45,9 @@ const AnimalSection = () => {
                     }
                 </div>
             </div>
+            <div className='flex justify-center mt-5'>
+                <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-5 py-3 rounded-tl-xl rounded-br-xl shadow-lg' >Show all products</button>
+            </div>
         </div>
     );
 };
