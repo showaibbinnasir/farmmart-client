@@ -6,7 +6,7 @@ import IntroTwo from './IntroTwo';
 
 const Homepage = () => {
     return (
-        <div className='m-5'>
+        <div className='p-5 bg-[#ffffff]'>
             <IntroOne></IntroOne>
             <AnimalSection></AnimalSection>
             <IntroTwo></IntroTwo>

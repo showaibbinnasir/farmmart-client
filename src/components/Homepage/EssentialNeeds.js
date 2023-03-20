@@ -34,7 +34,7 @@ const EssentialNeeds = () => {
                         {
                             data.map((post, i) => {
                                 return <SwiperSlide>
-                                    <div className='w-[350px]  p-1 rounded-xl bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white'>
+                                    <div className='w-[550px]  p-1 rounded-xl bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white'>
                                         <img className=' w-full rounded-xl' src={post.images[0]} alt="" />
                                         <h1>{post.title}</h1>
                                     </div>
