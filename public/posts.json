@@ -49,6 +49,22 @@
         "reviews": ["review1", "review2"],
         "images": ["https://i.ibb.co/frptNBv/Cow-female-black-white.jpg","https://i.ibb.co/J7jcJRC/logo.png", "https://i.ibb.co/2dw710m/ca-cow-stock.webp"],
         "status": false
+    },{
+        "postId": "02",
+        "animal": "Goat",
+        "title": "Australian goat",
+        "color": "white and black",
+        "uploadDate": "01-02-2023",
+        "sellerLocation": "chittagong",
+        "sellerName": "Sajib ahmed",
+        "sellerEmail": "sajib@gmail.com",
+        "sellerImage": "image.png",
+        "phone": "01880614408",
+        "price": 20000,
+        "description": "Lorem ipsum",
+        "reviews": ["review1", "review2"],
+        "images": ["https://i.ibb.co/frptNBv/Cow-female-black-white.jpg","https://i.ibb.co/J7jcJRC/logo.png", "https://i.ibb.co/2dw710m/ca-cow-stock.webp"],
+        "status": false
     }
     
 ]

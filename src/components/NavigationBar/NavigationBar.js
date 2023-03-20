@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const NavigationBar = () => {
     return (
-        <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F]">
+        <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost text-white lg:hidden">
@@ -48,7 +48,7 @@ const NavigationBar = () => {
                             </div>
                         </li>
                         <li><Link to='/login'>Login</Link></li>
-                        <li><Link>Register</Link></li>
+                        <li><Link to='/register'>Register</Link></li>
                     </ul>
                 </div>
             </div>
