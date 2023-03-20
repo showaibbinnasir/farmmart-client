@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavigationBar = () => {
     return (
@@ -14,6 +16,9 @@ const NavigationBar = () => {
                         <li><a href='#needs'>Needs</a></li>
                         <li><a href='#blogs'>Blogs</a></li>
                         <li><a href='#about'>About</a></li>
+                        <li><div className='inline md:hidden lg:hidden'>
+                            <button><i class="fa-solid fa-cart-shopping text-white text-xl"></i></button>
+                        </div></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl" href='#home'><img className='w-36 shadow-lg' src="logo.png" alt="" /></a>
@@ -28,8 +33,26 @@ const NavigationBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a>
+
+                <div className='hidden md:inline lg:inline'>
+                    <button><i class="fa-solid fa-cart-shopping text-white text-xl"></i></button>
+                </div>
+                {/* <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a> */}
+                <div className="dropdown dropdown-bottom dropdown-end text-white scale-75 lg:scale-100">
+                    <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
+                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gradient-to-r from-[#3F55A5] to-[#A3519F] rounded-box w-52">
+                        <li>
+                            <div>
+                                <img className='w-10 rounded-full' src="pp.png" alt="" />
+                                <h1>Showaib bin Nasir</h1>
+                            </div>
+                        </li>
+                        <li><Link to='/login'>Login</Link></li>
+                        <li><Link>Register</Link></li>
+                    </ul>
+                </div>
             </div>
+
         </div>
     );
 };
