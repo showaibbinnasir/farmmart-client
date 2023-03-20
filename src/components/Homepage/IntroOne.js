@@ -4,7 +4,7 @@ const IntroOne = () => {
     
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 justify-center items-center'>
-            <div className='flex justify-center lg:justify-end'>
+            <div data-aos="zoom-out-up" data-aos-duration="1500" className='flex justify-center lg:justify-end'>
                 <img className='w-[100%] lg:w-[60%]' src="asset1.png" alt="" />
             </div>
             <div className='w-[100%] lg:w-[60%]'>
