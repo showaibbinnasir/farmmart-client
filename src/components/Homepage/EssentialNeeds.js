@@ -24,9 +24,7 @@ const EssentialNeeds = () => {
                     slidesPerView={3}
                     spaceBetween={40}
                     freeMode={true}
-                    pagination={{
-                        clickable: true,
-                    }}
+                    
                     modules={[FreeMode, Pagination]}
                     className="mySwiper"
                 >
@@ -34,9 +32,10 @@ const EssentialNeeds = () => {
                         {
                             data.map((post, i) => {
                                 return <SwiperSlide>
-                                    <div className='w-[550px]  p-1 rounded-xl bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white'>
+                                    <div data-aos="zoom-out-up" data-aos-duration="1000" className='w-[550px]  p-1 rounded-xl bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white'>
                                         <img className=' w-full rounded-xl' src={post.images[0]} alt="" />
-                                        <h1>{post.title}</h1>
+                                        <h1 className='text-sm lg:text-2xl'>{post.title}</h1>
+                                        <h1 className='text-sm lg:text-xl'>Price: {post.price} /= Taka</h1>
                                     </div>
                                 </SwiperSlide>
                             })
