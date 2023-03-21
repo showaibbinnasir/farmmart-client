@@ -12,7 +12,7 @@ const AnimalSection = () => {
 
     return (
         <div>
-            <div className='flex justify-center lg:justify-center mt-10'>
+            <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-10'>
                 <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Animals</h1>
             </div>
             <div>

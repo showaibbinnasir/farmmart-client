@@ -16,7 +16,7 @@ const EssentialNeeds = () => {
     console.log(data)
     return (
         <div>
-            <div className='flex justify-center lg:justify-center mt-10'>
+            <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-10'>
                 <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Essential Needs</h1>
             </div>
             <div className='mt-5'>
@@ -36,6 +36,7 @@ const EssentialNeeds = () => {
                                         <img className=' w-full rounded-xl' src={post.images[0]} alt="" />
                                         <h1 className='text-sm lg:text-2xl'>{post.title}</h1>
                                         <h1 className='text-sm lg:text-xl'>Price: {post.price} /= Taka</h1>
+                                        <button className='btn btn-primary'>See details</button>
                                     </div>
                                 </SwiperSlide>
                             })

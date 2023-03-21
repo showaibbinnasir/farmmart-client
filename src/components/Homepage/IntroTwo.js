@@ -21,7 +21,7 @@ const IntroTwo = () => {
                     </div>
                 </div>
             </div>
-            <div data-aos="zoom-out-up" data-aos-duration="1500" className='flex justify-center lg:justify-start'>
+            <div data-aos="zoom-in-up" data-aos-duration="1500" className='flex justify-center lg:justify-start'>
                 <img className='w-[95%] lg:w-[60%]' src="asset2.png" alt="" />
             </div>
         </div>
