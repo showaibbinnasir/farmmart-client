@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorRout from "../components/ErrorRout/ErrorRout";
 import Homepage from "../components/Homepage/Homepage";
+import Login from "../components/Login/Login";
 import Deafult from "../layout/Deafult";
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
-        element: <h1>This is login page</h1>,
+        element: <Login></Login>,
         errorElement: <ErrorRout></ErrorRout>,
     }
 ])
