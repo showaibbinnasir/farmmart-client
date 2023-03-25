@@ -2,7 +2,8 @@ import React, { createContext } from 'react';
 export const authContext = createContext('')
 const AuthProvider = ({children}) => {
     const userInfo = {
-        name: 'Showaib bin Nasir'
+        name: 'Showaib bin Nasir',
+        image: 'pp.png'
     }
     return (
         <div>

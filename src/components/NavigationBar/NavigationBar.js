@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 
 const NavigationBar = () => {
-    const {name} = useContext(authContext)
+    const { name, image } = useContext(authContext)
     return (
         <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] z-50">
             <div className="navbar-start">
@@ -41,16 +41,31 @@ const NavigationBar = () => {
                 </div>
                 {/* <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a> */}
                 <div className="dropdown dropdown-bottom dropdown-end text-white scale-75 lg:scale-100">
-                    <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi {name}<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
+                    {
+                        name? 
+                        <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi <img className='ml-2 w-10 rounded-full' src={image} alt="" /><span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label> : 
+                        <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Login<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
+                    }
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gradient-to-r from-[#3F55A5] to-[#A3519F] rounded-box w-52">
-                        <li>
-                            <div>
-                                <img className='w-10 rounded-full' src="pp.png" alt="" />
-                                <h1>{name}</h1>
-                            </div>
-                        </li>
-                        <li><Link to='/login'>Login</Link></li>
-                        <li><Link to='/register'>Register</Link></li>
+                        {
+                            name ?
+                                <div>
+                                    <li>
+                                        <div>
+                                            <img className='w-10 rounded-full' src={image} alt="" />
+                                            <h1>{name}</h1>
+                                        </div>
+                                    </li>
+                                    <li><Link to='/'>Dashboard</Link></li>
+                                    <li><Link to='/'>Logout</Link></li>
+                                </div> :
+                                <div>
+                                    <li><Link to='/login'>Login</Link></li>
+                                    <li><Link to='/register'>Register</Link></li>
+                                </div>
+
+                        }
+
                     </ul>
                 </div>
             </div>
