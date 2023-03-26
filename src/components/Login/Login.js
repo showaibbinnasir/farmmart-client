@@ -1,21 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 
 const Login = () => {
-    const {loginUser} = useContext(authContext)
+    const { loginUser } = useContext(authContext)
+    const [isLoading, setIsLoading] = useState(false)
     const handleFormData = e => {
         e.preventDefault()
         const form = e.target;
+        setIsLoading(true)
         const email = form.email.value;
         const password = form.password.value;
         const userData = {
             email, password
         }
         loginUser(email, password)
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
-        
+            .then(data => {
+                console.log(data)
+                setIsLoading(false)
+            })
+            .catch(err => console.log(err))
+
     }
     return (
         <div className='w-[100vw] h-[100vh] bg-gradient-to-r from-[#3F55A5] to-[#A3519F] flex justify-center items-center'>
@@ -39,12 +44,16 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Login</button>
+                            {
+                                isLoading ?
+                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> :
+                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Register</button>
+                            }
                         </div>
                     </form>
                     <h1 className='mx-2 text-center'>Don't have any account? <span className='text-[#A3519F] font-semibold'><Link to='/register'>Register Now!</Link></span></h1>
                     <h1 className='text-center mb-2'>Or <span className='text-[#A3519F] font-semibold'><Link to='/home'>Go to home</Link></span></h1>
-                    
+
                 </div>
 
             </div>

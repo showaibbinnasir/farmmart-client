@@ -4,10 +4,12 @@ import { authContext } from '../../contextApi/AuthProvider';
 
 const Registration = () => {
 
-    const {createUser, updateUser} = useContext(authContext)
+    const { createUser, updateUser } = useContext(authContext)
+    const [isLoading, setIsLoading] = useState(false)
     const handleFormData = e => {
         e.preventDefault();
         const form = e.target;
+        setIsLoading(true)
         const email = form.email.value;
         const username = form.userName.value;
         const password = form.password.value;
@@ -17,21 +19,22 @@ const Registration = () => {
         }
         console.log(formInfo)
         createUser(email, password)
-        .then(data => {
-            handleUpdate(username, photoURL)
-            console.log(data);
-        })
-        .catch(err => console.log(err))
+            .then(data => {
+                handleUpdate(username, photoURL)
+                console.log(data);
+                setIsLoading(false)
+            })
+            .catch(err => console.log(err))
     }
 
     const handleUpdate = (name, photoLink) => {
         const profile = {
-            displayName : name,
-            photoURL : photoLink
+            displayName: name,
+            photoURL: photoLink
         }
         updateUser(profile)
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
 
     }
     return (
@@ -68,12 +71,16 @@ const Registration = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Login</button>
+                            {
+                                isLoading ?
+                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> : 
+                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Register</button>
+                            }
                         </div>
                     </form>
                     <h1 className='mx-2 text-center'>Already have account? <span className='text-[#A3519F] font-semibold'><Link to='/login'>Login Now!</Link></span></h1>
                     <h1 className='text-center mb-2'>Or <span className='text-[#A3519F] font-semibold'><Link to='/home'>Go to home</Link></span></h1>
-                    
+
                 </div>
 
             </div>
