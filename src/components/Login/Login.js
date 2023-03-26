@@ -44,12 +44,7 @@ const Login = () => {
                     </form>
                     <h1 className='mx-2 text-center'>Don't have any account? <span className='text-[#A3519F] font-semibold'><Link to='/register'>Register Now!</Link></span></h1>
                     <h1 className='text-center mb-2'>Or <span className='text-[#A3519F] font-semibold'><Link to='/home'>Go to home</Link></span></h1>
-                    <div className='mt-2'>
-                        <h1 className='text-center'>Or Login with</h1>
-                        <div className='flex justify-center my-2'>
-                            <button className='btn text-white border-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F]'><i class="fa-brands fa-google mr-2"></i>Google</button>
-                        </div>
-                    </div>
+                    
                 </div>
 
             </div>
