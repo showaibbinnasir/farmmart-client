@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../../contextApi/AuthProvider';
 
 const Registration = () => {
+
+    const {createUser} = useContext(authContext)
     const handleFormData = e => {
         e.preventDefault();
         const form = e.target;
@@ -12,6 +15,9 @@ const Registration = () => {
             email, username, password
         }
         console.log(formInfo)
+        createUser(email, password)
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
     }
     return (
         <div className='w-[100vw] h-[100vh] bg-gradient-to-r from-[#3F55A5] to-[#A3519F] flex justify-center items-center'>

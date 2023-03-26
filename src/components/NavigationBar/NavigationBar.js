@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 
 const NavigationBar = () => {
-    const { name, image } = useContext(authContext)
+    const { user, logOut } = useContext(authContext)
+
+    const signingOut = () => {
+        logOut();
+    }
     return (
         <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] z-50">
             <div className="navbar-start">
@@ -42,22 +46,22 @@ const NavigationBar = () => {
                 {/* <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a> */}
                 <div className="dropdown dropdown-bottom dropdown-end text-white scale-75 lg:scale-100">
                     {
-                        name? 
-                        <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi <img className='ml-2 w-10 rounded-full' src={image} alt="" /><span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label> : 
+                        user?.email ? 
+                        <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi {user?.email}<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label> : 
                         <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Login<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
                     }
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gradient-to-r from-[#3F55A5] to-[#A3519F] rounded-box w-52">
                         {
-                            name ?
+                            user?.email ?
                                 <div>
                                     <li>
                                         <div>
-                                            <img className='w-10 rounded-full' src={image} alt="" />
-                                            <h1>{name}</h1>
+                                            <img className='w-10 rounded-full' src='' alt="" />
+                                            <h1>{user?.email}</h1>
                                         </div>
                                     </li>
                                     <li><Link to='/'>Dashboard</Link></li>
-                                    <li><Link to='/'>Logout</Link></li>
+                                    <li><Link onClick={signingOut}>Logout</Link></li>
                                 </div> :
                                 <div>
                                     <li><Link to='/login'>Login</Link></li>
