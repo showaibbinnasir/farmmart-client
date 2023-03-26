@@ -4,20 +4,35 @@ import { authContext } from '../../contextApi/AuthProvider';
 
 const Registration = () => {
 
-    const {createUser} = useContext(authContext)
+    const {createUser, updateUser} = useContext(authContext)
     const handleFormData = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const username = form.userName.value;
         const password = form.password.value;
+        const photoURL = form.photourl.value;
         const formInfo = {
             email, username, password
         }
         console.log(formInfo)
         createUser(email, password)
+        .then(data => {
+            handleUpdate(username, photoURL)
+            console.log(data);
+        })
+        .catch(err => console.log(err))
+    }
+
+    const handleUpdate = (name, photoLink) => {
+        const profile = {
+            displayName : name,
+            photoURL : photoLink
+        }
+        updateUser(profile)
         .then(data => console.log(data))
         .catch(err => console.log(err))
+
     }
     return (
         <div className='w-[100vw] h-[100vh] bg-gradient-to-r from-[#3F55A5] to-[#A3519F] flex justify-center items-center'>
@@ -36,6 +51,12 @@ const Registration = () => {
                                 <span className="label-text">Username</span>
                             </label>
                             <input type="text" placeholder="username" name='userName' className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">photoURL</span>
+                            </label>
+                            <input type="text" placeholder="username" name='photourl' className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 export const authContext = createContext('')
 const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
@@ -10,8 +10,16 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    const loginUser = (email, password)=>{
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
     const logOut = () => {
         return signOut(auth)
+    }
+
+    const updateUser = (profile) => {
+        return updateProfile(auth.currentUser, profile)
     }
 
     useEffect(() => {
@@ -24,7 +32,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    const authInfo = {user, createUser, logOut}
+    const authInfo = {user, createUser, logOut, loginUser, updateUser}
 
     const userInfo = {
         name: 'Showaib bin Nasir',

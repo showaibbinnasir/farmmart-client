@@ -5,7 +5,7 @@ import { authContext } from '../../contextApi/AuthProvider';
 
 const NavigationBar = () => {
     const { user, logOut } = useContext(authContext)
-
+    console.log(user);
     const signingOut = () => {
         logOut();
     }
@@ -46,9 +46,12 @@ const NavigationBar = () => {
                 {/* <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a> */}
                 <div className="dropdown dropdown-bottom dropdown-end text-white scale-75 lg:scale-100">
                     {
-                        user?.email ? 
-                        <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi {user?.email}<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label> : 
-                        <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Login<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
+                        user?.email ?
+                            <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi {
+                                user?.photoURL ?
+                                    <img className='w-10 rounded-full ml-2' src={user?.photoURL} alt="" /> : <img className='w-10 rounded-full ml-2' src="imgeerr.jpg" alt="" />
+                            } <span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label> :
+                            <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Login<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
                     }
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gradient-to-r from-[#3F55A5] to-[#A3519F] rounded-box w-52">
                         {
@@ -56,8 +59,11 @@ const NavigationBar = () => {
                                 <div>
                                     <li>
                                         <div>
-                                            <img className='w-10 rounded-full' src='' alt="" />
-                                            <h1>{user?.email}</h1>
+                                            {
+                                                user?.photoURL ?
+                                                <img className='w-10 rounded-full ml-2' src={user?.photoURL} alt="" /> : <img className='w-10 rounded-full ml-2' src="imgeerr.jpg" alt="" />
+                                            }
+                                            <h1>{user?.displayName}</h1>
                                         </div>
                                     </li>
                                     <li><Link to='/'>Dashboard</Link></li>
