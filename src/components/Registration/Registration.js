@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 
@@ -22,9 +23,13 @@ const Registration = () => {
             .then(data => {
                 handleUpdate(username, photoURL)
                 console.log(data);
-                setIsLoading(false)
+                setIsLoading(false);
+                toast.success(`registration complete ${username}` )
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setIsLoading(false)
+                toast.error(err.message)
+            })
     }
 
     const handleUpdate = (name, photoLink) => {

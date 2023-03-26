@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 
 const Login = () => {
     const { loginUser } = useContext(authContext)
     const [isLoading, setIsLoading] = useState(false)
+    
     const handleFormData = e => {
         e.preventDefault()
         const form = e.target;
@@ -18,8 +20,12 @@ const Login = () => {
             .then(data => {
                 console.log(data)
                 setIsLoading(false)
+                toast.success('Login successful')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setIsLoading(false)
+                toast.error(err.message)
+            })
 
     }
     return (
@@ -47,7 +53,7 @@ const Login = () => {
                             {
                                 isLoading ?
                                     <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> :
-                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Register</button>
+                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Login</button>
                             }
                         </div>
                     </form>

@@ -5,13 +5,17 @@ import router from './router/router';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   useEffect(() => {
     AOS.init();
   }, [])
   return (
-    <RouterProvider router={router}></RouterProvider>
+    <div>
+      <RouterProvider router={router}></RouterProvider>
+      <Toaster/>
+    </div>
   );
 }
 
