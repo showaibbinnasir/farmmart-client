@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 
 const Registration = () => {
-
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const { createUser, updateUser } = useContext(authContext)
     const [isLoading, setIsLoading] = useState(false)
     const handleFormData = e => {
@@ -25,6 +27,7 @@ const Registration = () => {
                 console.log(data);
                 setIsLoading(false);
                 toast.success(`registration complete ${username}` )
+                navigate(from, {replace : true})
             })
             .catch(err => {
                 setIsLoading(false)
