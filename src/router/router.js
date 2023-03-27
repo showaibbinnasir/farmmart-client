@@ -5,6 +5,7 @@ import Login from "../components/Login/Login";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import Registration from "../components/Registration/Registration";
 import Deafult from "../layout/Deafult";
+import PrivateRouter from "../components/PrivateRouter/PrivateRouter";
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/product/:id',
-                element : <ProductDetails></ProductDetails>,
+                element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>,
                 loader: ()=> fetch('posts.json')
             }
         ]
