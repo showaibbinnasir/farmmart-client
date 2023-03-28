@@ -7,20 +7,12 @@ import Posts from '../Homepage/Posts';
 import Footer from '../Homepage/Footer';
 
 const ProductDetails = () => {
-    const images = [
-        {
-            original: 'https://picsum.photos/id/1018/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
+    const [products, setProducts] = useState([])
+    useEffect(()=>{
+        fetch('http://localhost:5000/three_cow')
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    },[])
     const data = useLoaderData()
     console.log(data[0].images);
     return (
@@ -73,7 +65,7 @@ const ProductDetails = () => {
             <div className='flex justify-center mt-5'>
                 <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
-                        data.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        products.map((post, i) => <Posts key={i} posts={post}></Posts>)
                     }
                 </div>
             </div>
@@ -83,7 +75,7 @@ const ProductDetails = () => {
             <div className='flex justify-center mt-5'>
                 <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
-                        data.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        products.map((post, i) => <Posts key={i} posts={post}></Posts>)
                     }
                 </div>
             </div>

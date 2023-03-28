@@ -13,7 +13,7 @@ const Posts = ({ posts }) => {
             <h1 className='text-md lg:text-2xl text-center mt-3'>{posts.title}</h1>
             <h1 className='text-center text-sm lg:text-xl mb-3'>Price: {posts.price} /= Taka</h1>
             <div className='flex justify-center scale-75 lg:scale-100'>
-                <button onClick={()=> navigate(posts.postId)} className='btn btn-primary'>Buy now</button>
+                <button onClick={()=> navigate(posts._id)} className='btn btn-primary'>Buy now</button>
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ const NavigationBar = () => {
                         </div></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl" href='#home'><img className='w-36 shadow-lg' src="logo.png" alt="" /></a>
+                <a className="btn btn-ghost normal-case text-xl"><img className='w-36 shadow-lg' src="https://i.ibb.co/NCBNFKD/logo.png" alt="" /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="text-white font-normal menu menu-horizontal px-1">
