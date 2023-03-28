@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import "./style.css"
 import Posts from '../Homepage/Posts';
+import Footer from '../Homepage/Footer';
 
 const ProductDetails = () => {
     const images = [
@@ -24,6 +25,10 @@ const ProductDetails = () => {
     console.log(data[0].images);
     return (
         <div className='bg-white'>
+            <div className="btm-nav bg-black z-50 shadow-lg">
+                <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1'>Buy Now</button>
+                <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Call Now</button>
+            </div>
             <div className='pt-10 px-10 bg-white'>
                 <h1 className='text-3xl text-[#3F55A5]'>{data[0].title}</h1>
                 <h1 className='text-xl'>Category : {data[0].animal}</h1>
@@ -42,13 +47,13 @@ const ProductDetails = () => {
                     <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Details</h1>
                 </div>
             </div>
-            <div className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white mt-5 p-3'>
+            <div className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white mt-5 p-3 text-start lg:text-center md:text-center'>
                 <h1 className='text-xl'>Title: {data[0].title}</h1>
                 <h1 className='text-xl'>Color: {data[0].color}</h1>
                 <h1 className='text-xl'>Animal: {data[0].animal}</h1>
                 <h1 className='text-xl'>Seller Name: {data[0].sellerName}</h1>
                 <h1 className='text-xl'>Seller Email: {data[0].sellerEmail}</h1>
-                <div className='flex gap-5 items-center'>
+                <div className='flex gap-5 justify-start md:justify-center lg:justify-center items-center'>
                     <h1 className='text-xl'>Seller Phone: {data[0].phone}</h1>
                     <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Call Now</button>
                 </div>
@@ -56,11 +61,35 @@ const ProductDetails = () => {
                 <h1 className='text-xl'>Upload date: {data[0].uploadDate}</h1>
                 <h1 className='text-xl'>Description: {data[0].description}</h1>
                 {
-                    data[0]?.status ? 
-                    <h1 className=' text-xl'>Stock: <span className=' text-red-500'>Unavailable</span></h1> : 
-                    <h1 className='text-xl'>Stock: <span className=' text-yellow-500'>Available</span></h1>
+                    data[0]?.status ?
+                        <h1 className=' text-xl'>Stock: <span className=' text-red-500'>Unavailable</span></h1> :
+                        <h1 className='text-xl'>Stock: <span className=' text-yellow-500'>Available</span></h1>
                 }
+
             </div>
+            <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-5'>
+                <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Similar Products</h1>
+            </div>
+            <div className='flex justify-center mt-5'>
+                <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        data.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                    }
+                </div>
+            </div>
+            <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-5'>
+                <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Essential needs</h1>
+            </div>
+            <div className='flex justify-center mt-5'>
+                <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        data.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                    }
+                </div>
+            </div>
+            <Footer></Footer>
+
+
         </div>
     );
 };
