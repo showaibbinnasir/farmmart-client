@@ -8,13 +8,14 @@ import Footer from '../Homepage/Footer';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState([])
+    
+    const data = useLoaderData()
+    console.log(data[0].images);
     useEffect(()=>{
-        fetch('http://localhost:5000/three_cow')
+        fetch(`http://localhost:5000/three_${data[0].animal}`)
         .then(res => res.json())
         .then(data => setProducts(data))
     },[])
-    const data = useLoaderData()
-    console.log(data[0].images);
     return (
         <div className='bg-white'>
             <div className="btm-nav bg-black z-50 shadow-lg">
