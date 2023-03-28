@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Posts from './Posts';
 
 const AnimalSection = () => {
-    const [posts, setPosts] = useState([]);
+    const [cowData, setCowData] = useState([]);
+    const [goatData, setGoatData] = useState([])
     useEffect(() => {
-        fetch('posts.json')
+        fetch('http://localhost:5000/three_cow')
             .then(res => res.json())
-            .then(data => setPosts(data))
+            .then(data => setCowData(data))
+    }, [])
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/three_goat')
+            .then(res => res.json())
+            .then(data => setGoatData(data))
     }, [])
 
 
@@ -26,7 +33,7 @@ const AnimalSection = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
-                        posts.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        cowData.map((post, i) => <Posts key={i} posts={post}></Posts>)
                     }
                 </div>
             </div>
@@ -41,7 +48,7 @@ const AnimalSection = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
-                        posts.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        goatData.map((post, i) => <Posts key={i} posts={post}></Posts>)
                     }
                 </div>
             </div>
