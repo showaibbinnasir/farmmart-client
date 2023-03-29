@@ -6,6 +6,7 @@ import ProductDetails from "../components/ProductDetails/ProductDetails";
 import Registration from "../components/Registration/Registration";
 import Deafult from "../layout/Deafult";
 import PrivateRouter from "../components/PrivateRouter/PrivateRouter";
+import Animals from "../components/Animals/Animals";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
                 path: '/product/:id',
                 element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>,
                 loader: ({params})=> fetch(`http://localhost:5000/product/${params.id}`)
+            },
+            {
+                path: '/animals',
+                element: <Animals></Animals>,
+                loader: () => fetch('http://localhost:5000/all_animals')
             }
         ]
 

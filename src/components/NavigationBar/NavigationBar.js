@@ -18,7 +18,7 @@ const NavigationBar = () => {
                     </label>
                     <ul tabIndex={0} className="text-white font-normal menu menu-compact dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-[#3F55A5] to-[#A3519F] rounded-box w-52">
                         <li><Link to='/home'>Home</Link></li>
-                        <li><a href='#animals'>Animals</a></li>
+                        <li><Link to='/animals'>Animals</Link></li>
                         <li><a href='#needs'>Needs</a></li>
                         <li><a href='#blogs'>Blogs</a></li>
                         <li><a href='#about'>About</a></li>
@@ -32,7 +32,7 @@ const NavigationBar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="text-white font-normal menu menu-horizontal px-1">
                     <li><Link to='/home'>Home</Link></li>
-                    <li><a href='#home'>Animals</a></li>
+                    <li><Link to='/animals'>Animals</Link></li>
                     <li><a href='#home'>Needs</a></li>
                     <li><a href='#home'>Blogs</a></li>
                     <li><a href='#home'>About</a></li>
