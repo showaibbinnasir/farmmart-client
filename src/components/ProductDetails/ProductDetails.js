@@ -10,14 +10,15 @@ import { authContext } from '../../contextApi/AuthProvider';
 const ProductDetails = () => {
     const [products, setProducts] = useState([])
     const { pathname } = useLocation();
-    let cart = []
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
 
 const getFromLocal = localStorage.getItem('cart')
-console.log(JSON.parse(getFromLocal));
+const parsedGetFromLocal = JSON.parse(getFromLocal);
+let cart = [...parsedGetFromLocal]
 const data = useLoaderData()
 console.log(data[0].images);
 useEffect(() => {
@@ -32,6 +33,7 @@ const addToCart = () => {
     const stringifyobject = JSON.stringify(cart)
     localStorage.setItem('cart', stringifyobject)
 }
+console.log(cart)
 return (
     <div className='bg-white'>
         <div className="btm-nav bg-black z-50 shadow-lg">
