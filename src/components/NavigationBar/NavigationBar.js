@@ -9,6 +9,7 @@ const NavigationBar = () => {
     const signingOut = () => {
         logOut();
     }
+    let cart = []
     return (
         <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] z-50">
             <div className="navbar-start">
@@ -19,7 +20,7 @@ const NavigationBar = () => {
                     <ul tabIndex={0} className="text-white font-normal menu menu-compact dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-[#3F55A5] to-[#A3519F] rounded-box w-52">
                         <li><Link to='/home'>Home</Link></li>
                         <li><Link to='/animals'>Animals</Link></li>
-                        <li><a href='#needs'>Needs</a></li>
+                        <li><Link to='/needs'>Needs</Link></li>
                         <li><a href='#blogs'>Blogs</a></li>
                         <li><a href='#about'>About</a></li>
                         <li><div className='inline md:hidden lg:hidden'>
@@ -33,16 +34,23 @@ const NavigationBar = () => {
                 <ul className="text-white font-normal menu menu-horizontal px-1">
                     <li><Link to='/home'>Home</Link></li>
                     <li><Link to='/animals'>Animals</Link></li>
-                    <li><a href='#home'>Needs</a></li>
+                    <li><Link to='/needs'>Needs</Link></li>
                     <li><a href='#home'>Blogs</a></li>
                     <li><a href='#home'>About</a></li>
                 </ul>
             </div>
             <div className="navbar-end">
 
-                <div className='hidden md:inline lg:inline'>
-                    <button><i class="fa-solid fa-cart-shopping text-white text-xl"></i></button>
+                <div className='hidden md:inline lg:inline dropdown dropdown-bottom dropdown-end'>
+                    <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-xl"></i></button>
+                    {/* <label tabIndex={0} className="btn m-1">Click</label> */}
+                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        {
+                            cart.map(product => <h1>Cart</h1>)
+                        }
+                    </ul>
                 </div>
+
                 {/* <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a> */}
                 <div className="dropdown dropdown-bottom dropdown-end text-white scale-75 lg:scale-100">
                     {

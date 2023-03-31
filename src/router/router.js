@@ -7,6 +7,8 @@ import Registration from "../components/Registration/Registration";
 import Deafult from "../layout/Deafult";
 import PrivateRouter from "../components/PrivateRouter/PrivateRouter";
 import Animals from "../components/Animals/Animals";
+import Needs from "../components/Needs/Needs";
+import NeedsPosts from "../components/NeedsPosts/NeedsPosts";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,15 @@ const router = createBrowserRouter([
                 path: '/animals',
                 element: <Animals></Animals>,
                 loader: () => fetch('http://localhost:5000/all_animals')
+            },
+            {
+                path: '/needs',
+                element: <Needs></Needs>
+            },
+            {
+                path: '/needsDetails/:id',
+                element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
+                loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
             }
         ]
 

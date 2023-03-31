@@ -1,32 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import "./style.css"
 import Posts from '../Homepage/Posts';
 import Footer from '../Homepage/Footer';
+import { authContext } from '../../contextApi/AuthProvider';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState([])
     const { pathname } = useLocation();
-
+    let cart = []
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
 
+const getFromLocal = localStorage.getItem('cart')
+console.log(JSON.parse(getFromLocal));
 const data = useLoaderData()
 console.log(data[0].images);
 useEffect(() => {
     fetch(`http://localhost:5000/three_${data[0].animal}`)
         .then(res => res.json())
         .then(data => setProducts(data))
-}, [])
+}, [data])
+
+const addToCart = () => {
+    const newcart = [...cart, data[0]]
+    cart = newcart;
+    const stringifyobject = JSON.stringify(cart)
+    localStorage.setItem('cart', stringifyobject)
+}
 return (
     <div className='bg-white'>
         <div className="btm-nav bg-black z-50 shadow-lg">
             <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1'>Buy Now</button>
-            <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Call Now</button>
+            <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button>
         </div>
         <div className='pt-10 px-10 bg-white'>
             <h1 className='text-3xl text-[#3F55A5]'>{data[0].title}</h1>
