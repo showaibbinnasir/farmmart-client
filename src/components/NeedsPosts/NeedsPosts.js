@@ -5,6 +5,7 @@ import Posts from '../Homepage/Posts';
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import "./style.css"
+import { toast } from 'react-hot-toast';
 
 const NeedsPosts = () => {
     const [products, setProducts] = useState([])
@@ -33,12 +34,13 @@ const NeedsPosts = () => {
         cart = newcart;
         const stringifyobject = JSON.stringify(cart)
         localStorage.setItem('cart', stringifyobject)
+        
         window.location.reload()
+        toast.success('added to cart')
     }
     return (
         <div className='bg-white'>
             <div className="btm-nav bg-black z-50 shadow-lg">
-                <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1'>Buy Now</button>
                 <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button>
             </div>
             <div className='pt-10 px-10 bg-white'>

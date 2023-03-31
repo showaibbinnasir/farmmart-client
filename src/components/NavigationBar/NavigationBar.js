@@ -5,12 +5,20 @@ import { authContext } from '../../contextApi/AuthProvider';
 
 const NavigationBar = () => {
     const { user, logOut } = useContext(authContext)
-    console.log(user);
+
     const signingOut = () => {
         logOut();
     }
     const getFromLocal = localStorage.getItem('cart')
     const cart = JSON.parse(getFromLocal)
+    let total = 0;
+    for (var i = 0; i <= cart?.length; i++) {
+        if (cart[i]?.price === undefined) {
+            break;
+        }
+        total += cart[i]?.price;
+    }
+
     return (
         <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] z-50">
             <div className="navbar-start">
@@ -24,12 +32,10 @@ const NavigationBar = () => {
                         <li><Link to='/needs'>Needs</Link></li>
                         <li><a href='#blogs'>Blogs</a></li>
                         <li><a href='#about'>About</a></li>
-                        <li><div className='inline md:hidden lg:hidden'>
-                            <button><i class="fa-solid fa-cart-shopping text-white text-xl"></i></button>
-                        </div></li>
+
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl"><img className='w-36 shadow-lg' src="https://i.ibb.co/NCBNFKD/logo.png" alt="" /></a>
+                <a className="btn btn-ghost normal-case text-xl"><img className='w-28 shadow-lg' src="https://i.ibb.co/NCBNFKD/logo.png" alt="" /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="text-white font-normal menu menu-horizontal px-1">
@@ -42,14 +48,33 @@ const NavigationBar = () => {
             </div>
             <div className="navbar-end">
 
-                <div className='hidden md:inline lg:inline dropdown dropdown-bottom dropdown-end'>
-                    <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-xl"></i></button>
+                <div className=' md:inline lg:inline dropdown dropdown-bottom dropdown-end'>
+                    <div class="indicator">
+                        <span class="indicator-item badge badge-secondary scale-75">{
+                            !cart ? 0 : 
+                            cart?.length
+                        }</span>
+                        {/* <button class="btn">inbox</button> */}
+                        <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
+                    </div>
+
                     {/* <label tabIndex={0} className="btn m-1">Click</label> */}
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         {
-                            cart?.length < 1 ? <h1>No data to show</h1> : 
-                            cart?.map(x => <h1>{x.title}</h1>)
+
+                            !cart ? <h1>No data to show</h1> :
+                                cart?.length < 1 ? <h1>No data to show</h1> :
+                                    cart?.map(x => <div className='border border-blue-600 p-2 rounded-lg  my-1'>
+                                        <div className='flex item-center gap-1'>
+                                            <img src={x.images[0].thumbnail} className='w-10' alt="" />
+                                            <h1>{x.title}</h1>
+                                        </div>
+                                        <h1>Price: {x.price} Taka</h1>
+                                    </div>)
                         }
+                        <h1 className='text-[#A3519F]'>Total Price: {total} Taka</h1>
+                        <button className=' my-1 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-lg'>Buy Now</button>
+                        <button className=' my-1 bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-lg'>Delete cart</button>
                     </ul>
                 </div>
 
