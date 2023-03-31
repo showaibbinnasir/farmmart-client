@@ -9,7 +9,8 @@ const NavigationBar = () => {
     const signingOut = () => {
         logOut();
     }
-    let cart = []
+    const getFromLocal = localStorage.getItem('cart')
+    const cart = JSON.parse(getFromLocal)
     return (
         <div className="navbar sticky top-0 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] z-50">
             <div className="navbar-start">
@@ -46,7 +47,8 @@ const NavigationBar = () => {
                     {/* <label tabIndex={0} className="btn m-1">Click</label> */}
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         {
-                            cart.map(product => <h1>Cart</h1>)
+                            cart?.length < 1 ? <h1>No data to show</h1> : 
+                            cart?.map(x => <h1>{x.title}</h1>)
                         }
                     </ul>
                 </div>

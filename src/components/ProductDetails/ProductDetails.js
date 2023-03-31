@@ -16,9 +16,7 @@ const ProductDetails = () => {
     }, [pathname]);
 
 
-const getFromLocal = localStorage.getItem('cart')
-const parsedGetFromLocal = JSON.parse(getFromLocal);
-let cart = [...parsedGetFromLocal]
+
 const data = useLoaderData()
 console.log(data[0].images);
 useEffect(() => {
@@ -27,18 +25,12 @@ useEffect(() => {
         .then(data => setProducts(data))
 }, [data])
 
-const addToCart = () => {
-    const newcart = [...cart, data[0]]
-    cart = newcart;
-    const stringifyobject = JSON.stringify(cart)
-    localStorage.setItem('cart', stringifyobject)
-}
-console.log(cart)
+
 return (
     <div className='bg-white'>
         <div className="btm-nav bg-black z-50 shadow-lg">
-            <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1'>Buy Now</button>
-            <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button>
+            <button className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button>
+            
         </div>
         <div className='pt-10 px-10 bg-white'>
             <h1 className='text-3xl text-[#3F55A5]'>{data[0].title}</h1>
