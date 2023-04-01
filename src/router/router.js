@@ -10,6 +10,9 @@ import Animals from "../components/Animals/Animals";
 import Needs from "../components/Needs/Needs";
 import NeedsPosts from "../components/NeedsPosts/NeedsPosts";
 import CheckOut from "../components/CheckOut/CheckOut";
+import Dashboard from "../components/Dashboard/Dashboard";
+import DashboardLayout from "../layout/DashboardLayout";
+import Profile from "../components/Dashboard/Profile";
 
 const getFromLocal = localStorage.getItem('cart');
 const parsedItem = JSON.parse(getFromLocal)
@@ -31,12 +34,12 @@ const router = createBrowserRouter([
             {
                 path: '/product/:id',
                 element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>,
-                loader: ({params})=> fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/product/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:5000/product/${params.id}`)
             },
             {
                 path: '/animals',
                 element: <Animals></Animals>,
-                loader: () => fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_animals')
+                loader: () => fetch('http://localhost:5000/all_animals')
             },
             {
                 path: '/needs',
@@ -45,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: '/needsDetails/:id',
                 element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
-                loader: ({params})=> fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/needsproduct/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
             },
             {
                 path: '/checkout',
@@ -53,11 +56,17 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <h1>This is users dashboard</h1>
+                element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
+                children: [
+                    {
+                        path: '/dashboard',
+                        element: <Profile></Profile>
+                    }
+                ]
             }
         ]
 
-
+        
     },
     {
         path: '/login',

@@ -28,7 +28,7 @@ const NavigationBar = () => {
         toast.success('cleared cart')
         navigation('/needs')
         window.location.reload()
-        
+
     }
 
     return (
@@ -47,7 +47,7 @@ const NavigationBar = () => {
 
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl"><img className='w-28 shadow-lg' src="https://i.ibb.co/NCBNFKD/logo.png" alt="" /></a>
+                <a className="btn btn-ghost normal-case text-xl"><img className='w-16 lg:w-36 shadow-lg' src="https://i.ibb.co/NCBNFKD/logo.png" alt="" /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="text-white font-normal menu menu-horizontal px-1">
@@ -63,8 +63,8 @@ const NavigationBar = () => {
                 <div className=' md:inline lg:inline dropdown dropdown-bottom dropdown-end'>
                     <div class="indicator">
                         <span class="indicator-item badge badge-secondary scale-75">{
-                            !cart ? 0 : 
-                            cart?.length
+                            !cart ? 0 :
+                                cart?.length
                         }</span>
                         {/* <button class="btn">inbox</button> */}
                         <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
@@ -89,6 +89,9 @@ const NavigationBar = () => {
                         <button onClick={clearCart} className=' my-1 bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-lg'>Delete cart</button>
                     </ul>
                 </div>
+                <label tabIndex={0} htmlFor='drawer-id' className="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
 
                 {/* <a href='#home' className="btn btn-ghost text-white">Hi Showaib<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></a> */}
                 <div className="dropdown dropdown-bottom dropdown-end text-white scale-75 lg:scale-100">
