@@ -29,7 +29,7 @@ const DashboardLayout = () => {
                                 <>
                                     <li><Link to='/dashboard'>Add Product</Link></li>
                                     <li><Link to='/dashboard'>My Product</Link></li>
-                                </> : <li><Link to='/dashboard'>My Orders</Link></li>
+                                </> : <li><Link to='/dashboard/orders'>My Orders</Link></li>
                         }
 
 
