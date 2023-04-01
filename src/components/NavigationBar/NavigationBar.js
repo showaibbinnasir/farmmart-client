@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 import { toast } from 'react-hot-toast';
 
 const NavigationBar = () => {
     const { user, logOut } = useContext(authContext)
-
+    const navigation = useNavigate();
+    const navigate = () => {
+        navigation('/checkout')
+    }
     const signingOut = () => {
         logOut();
     }
@@ -23,7 +26,9 @@ const NavigationBar = () => {
     const clearCart = () => {
         localStorage.removeItem('cart')
         toast.success('cleared cart')
+        navigation('/needs')
         window.location.reload()
+        
     }
 
     return (
@@ -80,7 +85,7 @@ const NavigationBar = () => {
                                     </div>)
                         }
                         <h1 className='text-[#A3519F]'>Total Price: {total} Taka</h1>
-                        <button className=' my-1 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-lg'>Buy Now</button>
+                        <button onClick={navigate} className=' my-1 bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-lg'>Buy Now</button>
                         <button onClick={clearCart} className=' my-1 bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-lg'>Delete cart</button>
                     </ul>
                 </div>

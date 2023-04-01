@@ -9,6 +9,10 @@ import PrivateRouter from "../components/PrivateRouter/PrivateRouter";
 import Animals from "../components/Animals/Animals";
 import Needs from "../components/Needs/Needs";
 import NeedsPosts from "../components/NeedsPosts/NeedsPosts";
+import CheckOut from "../components/CheckOut/CheckOut";
+
+const getFromLocal = localStorage.getItem('cart');
+const parsedItem = JSON.parse(getFromLocal)
 
 const router = createBrowserRouter([
     {
@@ -42,6 +46,10 @@ const router = createBrowserRouter([
                 path: '/needsDetails/:id',
                 element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
                 loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
+            },
+            {
+                path: '/checkout',
+                element : <CheckOut items = {parsedItem}></CheckOut>
             }
         ]
 

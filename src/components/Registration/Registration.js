@@ -17,8 +17,12 @@ const Registration = () => {
         const username = form.userName.value;
         const password = form.password.value;
         const photoURL = form.photourl.value;
+        const phone = form.phone.value;
+        const gender = form.gender.value;
+        const role = form.role.value;
+        const status = false
         const formInfo = {
-            email, username, password
+            userEmail: email, userName: username, userImage: photoURL, phone, gender, role
         }
         console.log(formInfo)
         createUser(email, password)
@@ -26,12 +30,28 @@ const Registration = () => {
                 handleUpdate(username, photoURL)
                 console.log(data);
                 setIsLoading(false);
+                saveUser(email, username, photoURL, phone, gender, role,status)
                 toast.success(`registration complete ${username}`)
                 navigate(from, { replace: true })
             })
             .catch(err => {
                 setIsLoading(false)
                 toast.error(err.message)
+            })
+    }
+
+    const saveUser = (userEmail, userName, userImage, phone, gender, role, status) => {
+        const userInfo = { userEmail, userName, userImage, phone, gender, role, status }
+        fetch('http://localhost:5000/all_users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
             })
     }
 
@@ -88,7 +108,7 @@ const Registration = () => {
                                 <label className="label">
                                     <span className="label-text">Gender</span>
                                 </label>
-                                <select className="select select-bordered w-full max-w-xs">
+                                <select name='gender' className="select select-bordered w-full max-w-xs">
                                     <option disabled selected>Gender</option>
                                     <option>Male</option>
                                     <option>Female</option>
@@ -96,7 +116,7 @@ const Registration = () => {
 
                             </div>
                         </div>
-                        <select className="select select-bordered w-full max-w-xs">
+                        <select name='role' className="select select-bordered w-full max-w-xs">
                             <option disabled selected>Which role you want to play?</option>
                             <option>Buyer</option>
                             <option>Seller</option>

@@ -53,7 +53,7 @@ const NeedsPosts = () => {
                         </div>
                         <div className='flex items-center justify-evenly'>
                             <h1 className='text-xl'><span className='text-[#3F55A5]'>Price:</span> {data[0].price} /= Taka</h1>
-                            <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Buy Now</button>
+                            <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Add to cart</button>
                         </div>
                     </div>
                 </div>
