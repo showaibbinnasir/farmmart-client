@@ -14,6 +14,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import DashboardLayout from "../layout/DashboardLayout";
 import Profile from "../components/Dashboard/Profile";
 import Orders from "../components/Orders/Orders";
+import SellAnimal from "../components/SellAnimal/SellAnimal";
 
 const getFromLocal = localStorage.getItem('cart');
 const parsedItem = JSON.parse(getFromLocal)
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
             {
                 path: '/needsDetails/:id',
                 element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
-                loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
+                loader: ({params})=> fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/${params.id}`)
             },
             {
                 path: '/checkout',
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/orders',
                         element: <Orders></Orders>
+                    },
+                    {
+                        path: '/dashboard/sellanimals',
+                        element: <SellAnimal></SellAnimal>
+                    },
+                    {
+                        path: '/dashboard/sellneeds',
+                        element: <SellAnimal></SellAnimal>
                     }
                 ]
             }
