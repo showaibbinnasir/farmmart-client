@@ -113,7 +113,7 @@ const NavigationBar = () => {
                                             <h1>{user?.displayName}</h1>
                                         </div>
                                     </li>
-                                    <li><Link to='/'>Dashboard</Link></li>
+                                    <li><Link to='/dashboard'>Dashboard</Link></li>
                                     <li><Link onClick={signingOut}>Logout</Link></li>
                                 </div> :
                                 <div>
