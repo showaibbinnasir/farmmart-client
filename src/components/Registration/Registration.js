@@ -26,8 +26,8 @@ const Registration = () => {
                 handleUpdate(username, photoURL)
                 console.log(data);
                 setIsLoading(false);
-                toast.success(`registration complete ${username}` )
-                navigate(from, {replace : true})
+                toast.success(`registration complete ${username}`)
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 setIsLoading(false)
@@ -46,42 +46,65 @@ const Registration = () => {
 
     }
     return (
-        <div className='w-[100vw] h-[100vh] bg-gradient-to-r from-[#3F55A5] to-[#A3519F] flex justify-center items-center'>
+        <div className='p-5 w-[100vw] h-[100vh] bg-gradient-to-r from-[#3F55A5] to-[#A3519F] flex justify-center items-center'>
             <div className='my-5 lg:my-0 md:my-0'>
                 <h1 className='text-white text-4xl font-bold text-center my-5'>Registration</h1>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleFormData} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                        <div className='grid grid-cols-2 gap-2'>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Username</span>
+                                </label>
+                                <input type="text" placeholder="username" name='userName' className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">photoURL</span>
+                                </label>
+                                <input type="text" placeholder="Photo URL" name='photourl' className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="password" placeholder="password" name='password' className="input input-bordered" required />
+
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Phone</span>
+                                </label>
+                                <input type="text" placeholder="Enter you number" name='phone' className="input input-bordered" required />
+
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Gender</span>
+                                </label>
+                                <select className="select select-bordered w-full max-w-xs">
+                                    <option disabled selected>Gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+
+                            </div>
                         </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Username</span>
-                            </label>
-                            <input type="text" placeholder="username" name='userName' className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">photoURL</span>
-                            </label>
-                            <input type="text" placeholder="username" name='photourl' className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input type="text" placeholder="password" name='password' className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
-                        </div>
-                        <div className="form-control mt-6">
+                        <select className="select select-bordered w-full max-w-xs">
+                            <option disabled selected>Which role you want to play?</option>
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                        </select>
+                        <div className="form-control mt-3">
                             {
                                 isLoading ?
-                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> : 
+                                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> :
                                     <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Register</button>
                             }
                         </div>
