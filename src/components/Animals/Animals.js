@@ -8,7 +8,7 @@ const Animals = () => {
         setSearchData(value)
     }
     useEffect(() => {
-        fetch(`http://localhost:5000/all_animals?searchId=${searchData}`)
+        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_animals?searchId=${searchData}`)
             .then(res => res.json())
             .then(data => setData(data))
     }, [searchData])
