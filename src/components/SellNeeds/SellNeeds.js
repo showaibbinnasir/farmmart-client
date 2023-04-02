@@ -23,7 +23,7 @@ const SellNeeds = () => {
         const seller_Email = userData.userEmail;
         const sellerImage = userData.userImage;
         const phone = userData.phone;
-        const price = form.price.value;
+        const price = Number(form.price.value);
         const description = form.description.value;
         const image1 = form.image1.value;
         const image2 = form.image2.value;

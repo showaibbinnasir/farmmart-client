@@ -30,7 +30,7 @@ const Orders = () => {
 
                             {
                                 orders.map((order, i) => <tr>
-                                    <th>{order?._id}</th>
+                                    <td>{order?._id}</td>
                                     <td>{order?.buyerName}</td>
                                     <td>{order?.orderDate}</td>
                                     <td><div>
