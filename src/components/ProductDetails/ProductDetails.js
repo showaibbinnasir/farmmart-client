@@ -6,9 +6,11 @@ import "./style.css"
 import Posts from '../Homepage/Posts';
 import Footer from '../Homepage/Footer';
 import { authContext } from '../../contextApi/AuthProvider';
+import NeedPost from '../NeedPost/NeedPost';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState([])
+    const [needs, setNeeds] = useState([])
     const { pathname } = useLocation();
     
     useEffect(() => {
@@ -18,11 +20,16 @@ const ProductDetails = () => {
 
 
 const data = useLoaderData()
-console.log(data[0].images);
 useEffect(() => {
     fetch(`http://localhost:5000/three_${data[0].animal}`)
         .then(res => res.json())
         .then(data => setProducts(data))
+}, [data])
+
+useEffect(() => {
+    fetch(`http://localhost:5000/three_needs?animal=${data[0].animal}`)
+        .then(res => res.json())
+        .then(data => setNeeds(data))
 }, [data])
 
 
@@ -86,7 +93,7 @@ return (
         <div className='flex justify-center mt-5'>
             <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    products.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                    needs.map((post, i) => <NeedPost key={i} posts={post}></NeedPost>)
                 }
             </div>
         </div>

@@ -6,6 +6,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import "./style.css"
 import { toast } from 'react-hot-toast';
+import NeedPost from '../NeedPost/NeedPost';
 
 const NeedsPosts = () => {
     const [products, setProducts] = useState([])
@@ -87,7 +88,7 @@ const NeedsPosts = () => {
             <div className='flex justify-center mt-5'>
                 <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
-                        products.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        products.map((post, i) => <NeedPost key={i} posts={post}></NeedPost>)
                     }
                 </div>
             </div>
