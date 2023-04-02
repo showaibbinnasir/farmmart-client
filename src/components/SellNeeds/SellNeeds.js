@@ -1,19 +1,85 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { authContext } from '../../contextApi/AuthProvider';
 
 const SellNeeds = () => {
+    const [userData, setUserData] = useState([])
+    const { user } = useContext(authContext)
+    useEffect(() => {
+        fetch(`http://localhost:5000/all_users?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setUserData(data[0]))
+    }, [user])
     const handleFormData = e => {
         e.preventDefault()
-        toast.error('under development')
+        const form = e.target;
+        const type = form.type.value;
+        const animal = form.animal.value;
+        const title = form.title.value;
+        const company = form.brand.value;
+        const uploadDate = form.uploadDate.value;
+        const sellerLocation = form.sellerLocation.value;
+        const sellerName = userData.userName;
+        const seller_Email = userData.userEmail;
+        const sellerImage = userData.userImage;
+        const phone = userData.phone;
+        const price = form.price.value;
+        const description = form.description.value;
+        const image1 = form.image1.value;
+        const image2 = form.image2.value;
+        const image3 = form.image3.value;
+        const images = [
+            {
+                original: image1,
+                thumbnail: image1
+            },
+            {
+                original: image2,
+                thumbnail: image2
+            },
+            {
+                original: image3,
+                thumbnail: image3
+            }
+        ]
+        const status = false;
+        const postInfo = {
+            type, animal, title, company, uploadDate, sellerLocation, sellerName, seller_Email, sellerImage, phone, price, description, images, status
+        }
+        console.log(postInfo);
+        fetch('http://localhost:5000/all_needs', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(postInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast.success('upload successfully')
+                form.reset()
+            })
     }
     return (
         <div>
             <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-10'>
-                <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Post for Animals</h1>
+                <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Post for Needs</h1>
             </div>
             <div>
                 <form onSubmit={handleFormData} className="card-body">
                     <div className='grid grid-cols-2 gap-2'>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Type</span>
+                            </label>
+                            <select name='type' className="select select-bordered w-full">
+                                <option disabled selected>Type</option>
+                                <option>Medicine</option>
+                                <option>Food</option>
+                            </select>
+
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Animal type</span>
@@ -35,9 +101,9 @@ const SellNeeds = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Color</span>
+                                <span className="label-text">Brand</span>
                             </label>
-                            <input type="text" placeholder="Animal color" name='color' className="input input-bordered" required />
+                            <input type="text" placeholder="Brand" name='brand' className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

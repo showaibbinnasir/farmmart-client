@@ -52,6 +52,7 @@ const CheckOut = ({ items }) => {
             .then(data => {
                 toast.success('Order Confirmed Successfully')
                 console.log(data)
+                localStorage.removeItem('cart')
                 navigate()
             })
     }

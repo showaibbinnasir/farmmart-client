@@ -15,7 +15,7 @@ const Orders = () => {
                 <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >My orders</h1>
             </div>
             <div className='h-[90vh] mt-5'>
-                <div className="overflow-x-auto mx-5">
+                <div className="overflow-x-auto mx-5 ">
                     <table className="table w-full">
 
                         <thead>
