@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { authContext } from '../../contextApi/AuthProvider';
+import useAdmin from '../../hooks/useAdmin';
 
 const Profile = () => {
     const [userData, setUserData] = useState([])
@@ -9,8 +10,8 @@ const Profile = () => {
             .then(res => res.json())
             .then(data => setUserData(data[0]))
     }, [user])
-
-    console.log(userData);
+    const [isAdmin] = useAdmin(user?.email)
+    console.log(isAdmin); 
     return (
         <div className='py-2'>
             <div data-aos="fade-right" className='flex justify-center lg:justify-center pt-10'>

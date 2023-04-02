@@ -3,10 +3,12 @@ import { useQuery } from 'react-query';
 import { authContext } from '../../contextApi/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import useAdmin from '../../hooks/useAdmin';
 
 const SellAnimalsLists = () => {
     const navigate = useNavigate()
     const {user} = useContext(authContext)
+    
     const { data: sellAnimals = [], refetch, isLoading } = useQuery({
         queryKey: ['sellAnimals'],
         queryFn: async () => {
