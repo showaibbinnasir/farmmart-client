@@ -19,7 +19,7 @@ const NeedsPosts = () => {
     const data = useLoaderData()
     console.log(data[0].images);
     useEffect(() => {
-        fetch(`http://localhost:5000/three_${data[0].animal}`)
+        fetch(`http://localhost:5000/three_needs?animal=${data[0].animal}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [data])
@@ -63,15 +63,15 @@ const NeedsPosts = () => {
             </div>
             <div className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white mt-5 p-3 text-start lg:text-center md:text-center'>
                 <h1 className='text-xl'>Title: {data[0].title}</h1>
-                <h1 className='text-xl'>Color: {data[0].color}</h1>
+                <h1 className='text-xl'>Type: {data[0].type}</h1>
                 <h1 className='text-xl'>Animal: {data[0].animal}</h1>
                 <h1 className='text-xl'>Seller Name: {data[0].sellerName}</h1>
-                <h1 className='text-xl'>Seller Email: {data[0].sellerEmail}</h1>
+                <h1 className='text-xl'>Seller Email: {data[0].seller_Email}</h1>
                 <div className='flex gap-5 justify-start md:justify-center lg:justify-center items-center'>
                     <h1 className='text-xl'>Seller Phone: {data[0].phone}</h1>
                     <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Call Now</button>
                 </div>
-                <h1 className='text-xl'>Color: {data[0].color}</h1>
+                <h1 className='text-xl'>Brand: {data[0].company}</h1>
                 <h1 className='text-xl'>Upload date: {data[0].uploadDate}</h1>
                 <h1 className='text-xl'>Description: {data[0].description}</h1>
                 {
@@ -91,16 +91,7 @@ const NeedsPosts = () => {
                     }
                 </div>
             </div>
-            <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-5'>
-                <h1 className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-16 py-4 rounded-tl-2xl rounded-br-2xl shadow-lg' >Essential needs</h1>
-            </div>
-            <div className='flex justify-center mt-5'>
-                <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        products.map((post, i) => <Posts key={i} posts={post}></Posts>)
-                    }
-                </div>
-            </div>
+            
             <Footer></Footer>
 
 

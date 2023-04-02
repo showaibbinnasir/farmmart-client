@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             {
                 path: '/needsDetails/:id',
                 element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
-                loader: ({params})=> fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
             },
             {
                 path: '/checkout',
