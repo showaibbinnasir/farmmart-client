@@ -16,6 +16,7 @@ import Profile from "../components/Dashboard/Profile";
 import Orders from "../components/Orders/Orders";
 import SellAnimal from "../components/SellAnimal/SellAnimal";
 import SellNeeds from "../components/SellNeeds/SellNeeds"
+import SellProducts from "../components/SellProducts/SellProducts";
 
 
 const getFromLocal = localStorage.getItem('cart');
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/sellneeds',
                         element: <SellNeeds></SellNeeds>
+                    },
+                    {
+                        path: '/dashboard/products',
+                        element: <SellProducts></SellProducts>
                     }
                 ]
             }
