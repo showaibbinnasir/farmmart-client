@@ -6,7 +6,7 @@ const SellAnimal = () => {
     const [userData, setUserData] = useState([])
     const { user } = useContext(authContext)
     useEffect(() => {
-        fetch(`http://localhost:5000/all_users?email=${user?.email}`)
+        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserData(data[0]))
     }, [user])
@@ -47,7 +47,7 @@ const SellAnimal = () => {
             animal, title, color, uploadDate, sellerLocation, sellerName, sellerEmail, sellerImage, phone, price, description, images, status
         }
         console.log(postInfo);
-        fetch('http://localhost:5000/all_animals', {
+        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_animals', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

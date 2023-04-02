@@ -20,7 +20,7 @@ const NeedsPosts = () => {
     const data = useLoaderData()
     console.log(data[0].images);
     useEffect(() => {
-        fetch(`http://localhost:5000/three_needs?animal=${data[0].animal}`)
+        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/three_needs?animal=${data[0].animal}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [data])
