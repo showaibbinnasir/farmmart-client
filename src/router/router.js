@@ -15,6 +15,8 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Profile from "../components/Dashboard/Profile";
 import Orders from "../components/Orders/Orders";
 import SellAnimal from "../components/SellAnimal/SellAnimal";
+import SellNeeds from "../components/SellNeeds/SellNeeds"
+
 
 const getFromLocal = localStorage.getItem('cart');
 const parsedItem = JSON.parse(getFromLocal)
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/sellneeds',
-                        element: <SellAnimal></SellAnimal>
+                        element: <SellNeeds></SellNeeds>
                     }
                 ]
             }
