@@ -42,7 +42,7 @@ const Registration = () => {
 
     const saveUser = (userEmail, userName, userImage, phone, gender, role, status) => {
         const userInfo = { userEmail, userName, userImage, phone, gender, role, status }
-        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_users', {
+        fetch('http://localhost:5000/all_users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

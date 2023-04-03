@@ -6,7 +6,7 @@ const Profile = () => {
     const [userData, setUserData] = useState([])
     const { user } = useContext(authContext)
     useEffect(() => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users?email=${user?.email}`)
+        fetch(`http://localhost:5000/all_users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserData(data[0]))
     }, [user])

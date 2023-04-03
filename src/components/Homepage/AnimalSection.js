@@ -5,13 +5,13 @@ const AnimalSection = () => {
     const [cowData, setCowData] = useState([]);
     const [goatData, setGoatData] = useState([])
     useEffect(() => {
-        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/three_cow')
+        fetch('http://localhost:5000/three_cow')
             .then(res => res.json())
             .then(data => setCowData(data))
     }, [])
 
     useEffect(()=>{
-        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/three_goat')
+        fetch('http://localhost:5000/three_goat')
             .then(res => res.json())
             .then(data => setGoatData(data))
     }, [])

@@ -10,7 +10,7 @@ const SellProducts = () => {
     const { data: sellNeeds = [], refetch, isLoading } = useQuery({
         queryKey: ['sellNeeds'],
         queryFn: async () => {
-            const res = await fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_needstwo?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/all_needstwo?email=${user?.email}`)
             const data = await res.json();
             return data;
         }
@@ -24,7 +24,7 @@ const SellProducts = () => {
     
 
     const handleDelete = id => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_needs/${id}`, {
+        fetch(`http://localhost:5000/all_needs/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -36,7 +36,7 @@ const SellProducts = () => {
     }
     
     // useEffect(() => {
-    //     fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_animals?email=${user?.email}`)
+    //     fetch(`http://localhost:5000/all_animals?email=${user?.email}`)
     //         .then(res => res.json())
     //         .then(data => setSellAnimals(data))
     // }, [user])

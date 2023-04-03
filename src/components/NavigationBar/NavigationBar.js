@@ -4,9 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contextApi/AuthProvider';
 import { toast } from 'react-hot-toast';
 import useSeller from '../../hooks/useSeller';
+import useAdmin from '../../hooks/useAdmin';
 
 const NavigationBar = () => {
+
     const { user, logOut } = useContext(authContext)
+    const [isAdmin] = useAdmin(user?.email)
     const navigation = useNavigate();
     const [isSeller] = useSeller(user?.email)
     const navigate = () => {
@@ -64,21 +67,29 @@ const NavigationBar = () => {
 
                 <div className=' md:inline lg:inline dropdown dropdown-bottom dropdown-end'>
                     {
+                        isAdmin ? <div class="indicator hidden">
+                            <span class="indicator-item badge badge-secondary scale-75">{
+                                !cart ? 0 :
+                                    cart?.length
+                            }</span>
+                            {/* <button class="btn">inbox</button> */}
+                            <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
+                        </div> :
                         isSeller ? <div class="indicator hidden">
-                            <span class="indicator-item badge badge-secondary scale-75">{
-                                !cart ? 0 :
-                                    cart?.length
-                            }</span>
-                            {/* <button class="btn">inbox</button> */}
-                            <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
-                        </div> : <div class="indicator">
-                            <span class="indicator-item badge badge-secondary scale-75">{
-                                !cart ? 0 :
-                                    cart?.length
-                            }</span>
-                            {/* <button class="btn">inbox</button> */}
-                            <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
-                        </div>
+                        <span class="indicator-item badge badge-secondary scale-75">{
+                            !cart ? 0 :
+                                cart?.length
+                        }</span>
+                        {/* <button class="btn">inbox</button> */}
+                        <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
+                    </div> : <div class="indicator">
+                        <span class="indicator-item badge badge-secondary scale-75">{
+                            !cart ? 0 :
+                                cart?.length
+                        }</span>
+                        {/* <button class="btn">inbox</button> */}
+                        <button tabIndex={0}><i class="fa-solid fa-cart-shopping text-white text-2xl"></i></button>
+                    </div>
                     }
 
                     {/* <label tabIndex={0} className="btn m-1">Click</label> */}

@@ -4,13 +4,15 @@ import { toast } from 'react-hot-toast';
 
 const SellAnimal = () => {
     const [userData, setUserData] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const { user } = useContext(authContext)
     useEffect(() => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users?email=${user?.email}`)
+        fetch(`http://localhost:5000/all_users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserData(data[0]))
     }, [user])
     const handleFormData = (e) => {
+        setIsLoading(true)
         e.preventDefault()
         const form = e.target;
         const animal = form.animal.value;
@@ -47,7 +49,7 @@ const SellAnimal = () => {
             animal, title, color, uploadDate, sellerLocation, sellerName, sellerEmail, sellerImage, phone, price, description, images, status
         }
         console.log(postInfo);
-        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_animals', {
+        fetch('http://localhost:5000/all_animals', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -56,7 +58,7 @@ const SellAnimal = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                setIsLoading(false)
                 toast.success('upload successfully')
                 form.reset()
             })
@@ -140,7 +142,11 @@ const SellAnimal = () => {
                             <input type="text" placeholder="third image" name='image3' className="input input-bordered" required />
                         </div>
                     </div>
-                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Post now</button>
+                    {
+                        isLoading ?
+                            <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> :
+                            <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Post now</button>
+                    }
                 </form>
             </div>
         </div>

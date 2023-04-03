@@ -10,11 +10,11 @@ import { useNavigate } from 'react-router-dom';
 const EssentialNeeds = () => {
     const navigate = useNavigate()
     const navigation = (id) => {
-        navigate(`/product/${id}`)
+        navigate(`/needsdetails/${id}`)
     }
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_animals')
+        fetch('http://localhost:5000/all_needs')
             .then(res => res.json())
             .then(data => setData(data))
     }, [])

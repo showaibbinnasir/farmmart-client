@@ -12,7 +12,7 @@ const SellAnimalsLists = () => {
     const { data: sellAnimals = [], refetch, isLoading } = useQuery({
         queryKey: ['sellAnimals'],
         queryFn: async () => {
-            const res = await fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_animalstwo?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/all_animalstwo?email=${user?.email}`)
             const data = await res.json();
             return data;
         }
@@ -22,7 +22,7 @@ const SellAnimalsLists = () => {
     }
 
     const handleDeleteTwo = id => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_animals/${id}`, {
+        fetch(`http://localhost:5000/all_animals/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

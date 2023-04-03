@@ -4,13 +4,15 @@ import { authContext } from '../../contextApi/AuthProvider';
 
 const SellNeeds = () => {
     const [userData, setUserData] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const { user } = useContext(authContext)
     useEffect(() => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users?email=${user?.email}`)
+        fetch(`http://localhost:5000/all_users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserData(data[0]))
     }, [user])
     const handleFormData = e => {
+        setIsLoading(true)
         e.preventDefault()
         const form = e.target;
         const type = form.type.value;
@@ -47,7 +49,7 @@ const SellNeeds = () => {
             type, animal, title, company, uploadDate, sellerLocation, sellerName, seller_Email, sellerImage, phone, price, description, images, status
         }
         console.log(postInfo);
-        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_needs', {
+        fetch('http://localhost:5000/all_needs', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -56,7 +58,7 @@ const SellNeeds = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                setIsLoading(false)
                 toast.success('upload successfully')
                 form.reset()
             })
@@ -150,7 +152,11 @@ const SellNeeds = () => {
                             <input type="text" placeholder="third image" name='image3' className="input input-bordered" required />
                         </div>
                     </div>
-                    <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Post now</button>
+                    {
+                        isLoading ?
+                            <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white" disabled><progress className="progress bg-white w-36"></progress></button> :
+                            <button type='submit' className="btn bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white">Post now</button>
+                    }
                 </form>
             </div>
         </div>

@@ -5,7 +5,7 @@ const Orders = () => {
     const [orders, setOrders] = useState([])
     const { user } = useContext(authContext)
     useEffect(() => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/orders?email=${user?.email}`)
+        fetch(`http://localhost:5000/orders?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [user])

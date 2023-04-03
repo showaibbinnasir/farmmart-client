@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useLocation } from 'react-router-dom';
 import Footer from '../Homepage/Footer';
 import Posts from '../Homepage/Posts';
@@ -7,6 +7,9 @@ import ImageGallery from 'react-image-gallery';
 import "./style.css"
 import { toast } from 'react-hot-toast';
 import NeedPost from '../NeedPost/NeedPost';
+import useAdmin from '../../hooks/useAdmin';
+import { authContext } from '../../contextApi/AuthProvider';
+import useSeller from '../../hooks/useSeller';
 
 const NeedsPosts = () => {
     const [products, setProducts] = useState([])
@@ -20,29 +23,35 @@ const NeedsPosts = () => {
     const data = useLoaderData()
     console.log(data[0].images);
     useEffect(() => {
-        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/three_needs?animal=${data[0].animal}`)
+        fetch(`http://localhost:5000/three_needs?animal=${data[0].animal}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [data])
     const getFromLocal = localStorage.getItem('cart')
     const parsedGetFromLocal = JSON.parse(getFromLocal);
     let cart = []
-    if(parsedGetFromLocal){
+    if (parsedGetFromLocal) {
         cart = [...parsedGetFromLocal]
     }
+    const { user } = useContext(authContext)
+    const [isAdmin] = useAdmin(user?.email)
+    const [isSeller] = useSeller(user?.email)
     const addToCart = () => {
         const newcart = [...cart, data[0]]
         cart = newcart;
         const stringifyobject = JSON.stringify(cart)
         localStorage.setItem('cart', stringifyobject)
-        
+
         window.location.reload()
         toast.success('added to cart')
     }
     return (
         <div className='bg-white'>
             <div className="btm-nav bg-black z-50 shadow-lg">
-                <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button>
+                {
+                    isAdmin ? <button onClick={addToCart} disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Watching as admin</button>
+                        : isSeller ? <button onClick={addToCart} disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Watching as seller</button> : <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button>
+                }
             </div>
             <div className='pt-10 px-10 bg-white'>
                 <h1 className='text-3xl text-[#3F55A5]'>{data[0].title}</h1>
@@ -92,7 +101,7 @@ const NeedsPosts = () => {
                     }
                 </div>
             </div>
-            
+
             <Footer></Footer>
 
 

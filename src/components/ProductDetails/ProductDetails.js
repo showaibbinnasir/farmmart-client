@@ -7,6 +7,8 @@ import Posts from '../Homepage/Posts';
 import Footer from '../Homepage/Footer';
 import { authContext } from '../../contextApi/AuthProvider';
 import NeedPost from '../NeedPost/NeedPost';
+import useAdmin from '../../hooks/useAdmin';
+import useSeller from '../../hooks/useSeller';
 
 const ProductDetails = () => {
     const [products, setProducts] = useState([])
@@ -17,17 +19,19 @@ const ProductDetails = () => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
-
+const {user} = useContext(authContext)
+const [isAdmin] = useAdmin(user?.email)
+const [isSeller] = useSeller(user?.email)
 
 const data = useLoaderData()
 useEffect(() => {
-    fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/three_${data[0].animal}`)
+    fetch(`http://localhost:5000/three_${data[0].animal}`)
         .then(res => res.json())
         .then(data => setProducts(data))
 }, [data])
 
 useEffect(() => {
-    fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/three_needs?animal=${data[0].animal}`)
+    fetch(`http://localhost:5000/three_needs?animal=${data[0].animal}`)
         .then(res => res.json())
         .then(data => setNeeds(data))
 }, [data])
@@ -36,7 +40,13 @@ useEffect(() => {
 return (
     <div className='bg-white'>
         <div className="btm-nav bg-black z-50 shadow-lg">
-            <button className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button>
+            {
+                isAdmin ? 
+                <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Watching as admin</button> : 
+                isSeller ? 
+                <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Watching as seller</button> : 
+                <button className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button>
+            }
             
         </div>
         <div className='pt-10 px-10 bg-white'>

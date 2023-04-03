@@ -39,12 +39,12 @@ const router = createBrowserRouter([
             {
                 path: '/product/:id',
                 element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>,
-                loader: ({params})=> fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/product/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:5000/product/${params.id}`)
             },
             {
                 path: '/animals',
                 element: <Animals></Animals>,
-                loader: () => fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_animals')
+                loader: () => fetch('http://localhost:5000/all_animals')
             },
             {
                 path: '/needs',
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
             {
                 path: '/needsDetails/:id',
                 element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
-                loader: ({params})=> fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/needsproduct/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
             },
             {
                 path: '/checkout',
