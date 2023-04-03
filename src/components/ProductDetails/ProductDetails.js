@@ -45,7 +45,9 @@ return (
                 <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Watching as admin</button> : 
                 isSeller ? 
                 <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Watching as seller</button> : 
-                <button className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button>
+                data[0].status ? 
+                <button className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button> : 
+                <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Unverified product</button>
             }
             
         </div>
@@ -59,7 +61,11 @@ return (
                     </div>
                     <div className='flex items-center justify-evenly'>
                         <h1 className='text-xl'><span className='text-[#3F55A5]'>Price:</span> {data[0].price} /= Taka</h1>
-                        <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Buy Now</button>
+                        {
+                            data[0].status ? 
+                            <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Buy Now</button> : 
+                            <button disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Unverified</button>
+                        }
                     </div>
                 </div>
             </div>
@@ -82,8 +88,8 @@ return (
             <h1 className='text-xl'>Description: {data[0].description}</h1>
             {
                 data[0]?.status ?
-                    <h1 className=' text-xl'>Stock: <span className=' text-red-500'>Unavailable</span></h1> :
-                    <h1 className='text-xl'>Stock: <span className=' text-yellow-500'>Available</span></h1>
+                    <h1 className=' text-xl'>Stock: <span className=' text-yellow-500'>Available</span></h1> :
+                    <h1 className='text-xl'>Stock: <span className=' text-red-500'>Unavailable</span></h1>
             }
 
         </div>

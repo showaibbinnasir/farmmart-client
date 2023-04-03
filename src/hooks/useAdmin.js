@@ -6,7 +6,7 @@ const useAdmin = (email) => {
         fetch(`http://localhost:5000/all_users?email=${email}`)
         .then(res => res.json())
         .then(data => {
-            if(data[0].role === 'Admin'){
+            if(data[0]?.role === 'Admin'){
                 setIsAdmin(true)
             }
         })

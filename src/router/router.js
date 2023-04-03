@@ -17,6 +17,8 @@ import Orders from "../components/Orders/Orders";
 import SellAnimal from "../components/SellAnimal/SellAnimal";
 import SellNeeds from "../components/SellNeeds/SellNeeds"
 import SellProducts from "../components/SellProducts/SellProducts";
+import ManageUsers from "../components/ManageUsers/ManageUsers";
+import ManageNeeds from "../components/ManageNeeds/ManageNeeds";
 
 
 const getFromLocal = localStorage.getItem('cart');
@@ -30,16 +32,16 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element : <Homepage></Homepage>
+                element: <Homepage></Homepage>
             },
             {
                 path: '/home',
-                element : <Homepage></Homepage>
+                element: <Homepage></Homepage>
             },
             {
                 path: '/product/:id',
                 element: <PrivateRouter><ProductDetails></ProductDetails></PrivateRouter>,
-                loader: ({params})=> fetch(`http://localhost:5000/product/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
             },
             {
                 path: '/animals',
@@ -53,11 +55,11 @@ const router = createBrowserRouter([
             {
                 path: '/needsDetails/:id',
                 element: <PrivateRouter><NeedsPosts></NeedsPosts></PrivateRouter>,
-                loader: ({params})=> fetch(`http://localhost:5000/needsproduct/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/needsproduct/${params.id}`)
             },
             {
                 path: '/checkout',
-                element : <CheckOut items = {parsedItem}></CheckOut>
+                element: <CheckOut items={parsedItem}></CheckOut>
             },
             {
                 path: '/dashboard',
@@ -82,12 +84,22 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/products',
                         element: <SellProducts></SellProducts>
+                    },
+                    {
+                        path: '/dashboard/manageuser',
+                        element: <ManageUsers></ManageUsers>
+                    },
+
+                    {
+                        path: '/dashboard/manageneeds',
+                        element: <ManageNeeds></ManageNeeds>
                     }
+
                 ]
             }
         ]
 
-        
+
     },
     {
         path: '/login',

@@ -6,7 +6,7 @@ const useSeller = (email) => {
         fetch(`http://localhost:5000/all_users?email=${email}`)
         .then(res => res.json())
         .then(data => {
-            if(data[0].role === 'Seller'){
+            if(data[0]?.role === 'Seller'){
                 setIsSeller(true)
             }
         })

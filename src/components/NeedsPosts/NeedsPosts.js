@@ -50,7 +50,10 @@ const NeedsPosts = () => {
             <div className="btm-nav bg-black z-50 shadow-lg">
                 {
                     isAdmin ? <button onClick={addToCart} disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Watching as admin</button>
-                        : isSeller ? <button onClick={addToCart} disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Watching as seller</button> : <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button>
+                        : isSeller ? <button onClick={addToCart} disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Watching as seller</button> : 
+                        data[0].status ? 
+                        <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Add to cart</button> :
+                        <button disabled onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1'>Unverified product</button>
                 }
             </div>
             <div className='pt-10 px-10 bg-white'>
@@ -63,7 +66,11 @@ const NeedsPosts = () => {
                         </div>
                         <div className='flex items-center justify-evenly'>
                             <h1 className='text-xl'><span className='text-[#3F55A5]'>Price:</span> {data[0].price} /= Taka</h1>
-                            <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Add to cart</button>
+                            {
+                                data[0].status ? 
+                                <button onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Add to cart</button> :
+                                <button disabled onClick={addToCart} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Unverified</button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -86,8 +93,8 @@ const NeedsPosts = () => {
                 <h1 className='text-xl'>Description: {data[0].description}</h1>
                 {
                     data[0]?.status ?
-                        <h1 className=' text-xl'>Stock: <span className=' text-red-500'>Unavailable</span></h1> :
-                        <h1 className='text-xl'>Stock: <span className=' text-yellow-500'>Available</span></h1>
+                        <h1 className=' text-xl'>Stock: <span className=' text-yellow-500'>Available</span></h1> :
+                        <h1 className='text-xl'>Stock: <span className=' text-red-500'>Unavailable</span></h1>
                 }
 
             </div>
