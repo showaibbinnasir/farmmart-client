@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Posts from './Posts';
+import { useNavigate } from 'react-router-dom';
 
 const AnimalSection = () => {
     const [cowData, setCowData] = useState([]);
@@ -15,7 +16,10 @@ const AnimalSection = () => {
             .then(res => res.json())
             .then(data => setGoatData(data))
     }, [])
-
+    const navigation = useNavigate()
+    const navigate = () => {
+        navigation('/animals')
+    }
 
     return (
         <div>
@@ -26,7 +30,7 @@ const AnimalSection = () => {
                 <div className='grid grid-cols-2 items-center mt-10 mb-10' >
                     <h1 className='text-4xl text-end font-semibold text-[#3F55A5]' >Cow</h1>
                     <div className='flex justify-center lg:justify-end'>
-                        <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-tl-xl rounded-br-xl shadow-lg' >see all</button>
+                        <button onClick={navigate} className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-tl-xl rounded-br-xl shadow-lg' >see all</button>
                     </div>
                 </div>
             </div>
@@ -41,7 +45,7 @@ const AnimalSection = () => {
                 <div className='grid grid-cols-2 items-center mt-10 mb-10' >
                     <h1 className='text-4xl text-end font-semibold text-[#3F55A5]' >Goat</h1>
                     <div className='flex justify-center lg:justify-end'>
-                        <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-tl-xl rounded-br-xl shadow-lg' >see all</button>
+                        <button onClick={navigate} className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-3 py-1 rounded-tl-xl rounded-br-xl shadow-lg' >see all</button>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ const AnimalSection = () => {
                 </div>
             </div>
             <div className='flex justify-center mt-5'>
-                <button className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-5 py-3 rounded-tl-xl rounded-br-xl shadow-lg' >Show all products</button>
+                <button onClick={navigate} className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-5 py-3 rounded-tl-xl rounded-br-xl shadow-lg' >Show all products</button>
             </div>
         </div>
     );

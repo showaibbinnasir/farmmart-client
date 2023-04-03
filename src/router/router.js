@@ -19,6 +19,8 @@ import SellNeeds from "../components/SellNeeds/SellNeeds"
 import SellProducts from "../components/SellProducts/SellProducts";
 import ManageUsers from "../components/ManageUsers/ManageUsers";
 import ManageNeeds from "../components/ManageNeeds/ManageNeeds";
+import ManageAnimals from "../components/ManageAnimals/ManageAnimals";
+import ProductCheckOut from "../components/CheckOut/ProductCheckOut";
 
 
 const getFromLocal = localStorage.getItem('cart');
@@ -62,6 +64,11 @@ const router = createBrowserRouter([
                 element: <CheckOut items={parsedItem}></CheckOut>
             },
             {
+                path: '/checkout/:id',
+                element: <ProductCheckOut></ProductCheckOut>,
+                loader : ({params}) => fetch(`http://localhost:5000/product/${params.id}`) 
+            },
+            {
                 path: '/dashboard',
                 element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
                 children: [
@@ -93,6 +100,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/manageneeds',
                         element: <ManageNeeds></ManageNeeds>
+                    },
+                    {
+                        path: '/dashboard/manageanimals',
+                        element: <ManageAnimals></ManageAnimals>
                     }
 
                 ]

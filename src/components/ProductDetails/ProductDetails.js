@@ -11,6 +11,7 @@ import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
 
 const ProductDetails = () => {
+    const navigation = useNavigate()
     const [products, setProducts] = useState([])
     const [needs, setNeeds] = useState([])
     const { pathname } = useLocation();
@@ -36,6 +37,10 @@ useEffect(() => {
         .then(data => setNeeds(data))
 }, [data])
 
+const navigate = id => {
+    navigation(`/checkout/${id}`)
+}
+
 
 return (
     <div className='bg-white'>
@@ -46,7 +51,7 @@ return (
                 isSeller ? 
                 <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Watching as seller</button> : 
                 data[0].status ? 
-                <button className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button> : 
+                <button onClick={()=> navigate(data[0]._id)} className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Buy Now</button> : 
                 <button disabled className='bg-gradient-to-r to-[#3F55A5] from-[#A3519F] text-white px-3 py-1'>Unverified product</button>
             }
             
@@ -63,7 +68,7 @@ return (
                         <h1 className='text-xl'><span className='text-[#3F55A5]'>Price:</span> {data[0].price} /= Taka</h1>
                         {
                             data[0].status ? 
-                            <button className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Buy Now</button> : 
+                            <button onClick={()=> navigate(data[0]._id)} className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Buy Now</button> : 
                             <button disabled className='bg-gradient-to-r from-[rgb(241,90,41)] to-[rgb(218,28,92)] text-white px-3 py-1 rounded-md'>Unverified</button>
                         }
                     </div>

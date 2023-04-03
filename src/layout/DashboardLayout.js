@@ -30,7 +30,7 @@ const DashboardLayout = () => {
                             isAdmin ? <>
                                 <li><Link to='/dashboard/manageuser'>Manage User</Link></li>
                                 <li><Link to='/dashboard/manageneeds'>Manage Needs</Link></li>
-                                <li><Link to='/dashboard'>Manage Animals</Link></li>
+                                <li><Link to='/dashboard/manageanimals'>Manage Animals</Link></li>
                             </> :
                                 isSeller ?
                                     <>

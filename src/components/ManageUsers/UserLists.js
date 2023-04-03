@@ -15,7 +15,7 @@ const UserLists = ({ user, refetch }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                toast.success(`verified ${user.userName} successfuly`)
+                toast.success(`verified ${user.userName} Successfully`)
                 refetch()
             })
     }
