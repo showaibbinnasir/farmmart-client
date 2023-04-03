@@ -6,7 +6,7 @@ const ManageNeeds = () => {
     const { data: needData = [], refetch, isLoading } = useQuery({
         queryKey: ['needData'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/all_needs`)
+            const res = await fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_needs`)
             const data = await res.json();
             return data;
         }

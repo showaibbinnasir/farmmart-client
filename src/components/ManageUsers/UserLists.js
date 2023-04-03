@@ -5,7 +5,7 @@ const UserLists = ({ user, refetch }) => {
     const handleVerifyBtn = id => {
         const verification = true;
         const verify = { verification };
-        fetch(`http://localhost:5000/all_users/update/${id}`, {
+        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users/update/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

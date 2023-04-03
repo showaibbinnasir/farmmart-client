@@ -7,7 +7,7 @@ const SellAnimal = () => {
     const [isLoading, setIsLoading] = useState(false)
     const { user } = useContext(authContext)
     useEffect(() => {
-        fetch(`http://localhost:5000/all_users?email=${user?.email}`)
+        fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserData(data[0]))
     }, [user])
@@ -26,44 +26,88 @@ const SellAnimal = () => {
         const phone = userData.phone;
         const price = form.price.value;
         const description = form.description.value;
-        const image1 = form.image1.value;
-        const image2 = form.image2.value;
-        const image3 = form.image3.value;
-        const images = [
-            {
-                original: image1,
-                thumbnail: image1
-            },
-            {
-                original: image2,
-                thumbnail: image2
-            },
-            {
-                original: image3,
-                thumbnail: image3
-            }
-        ]
+        const image1 = form.thumbnailOne.files[0];
+        const image2 = form.thumbnailTwo.files[0]
+        const image3 = form.thumbnailThree.files[0]
+        const formDataOne = new FormData()
+        formDataOne.append('image', image1)
+        const formDataTwo = new FormData()
+        formDataTwo.append('image', image2)
+        const formDataThree = new FormData()
+        formDataThree.append('image', image3)
+        let imageOne = ''
+        let imageTwo = ''
+        let imageThree = ''
+
         const status = false;
 
-        const postInfo = {
-            animal, title, color, uploadDate, sellerLocation, sellerName, sellerEmail, sellerImage, phone, price, description, images, status
-        }
-        console.log(postInfo);
-        fetch('http://localhost:5000/all_animals', {
+        console.log({ image1, image2, image3 })
+        fetch("https://api.imgbb.com/1/upload?key=63ff49e7f3a9f352605525982cb4b330", {
             method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(postInfo)
+            body: formDataOne
         })
             .then(res => res.json())
-            .then(data => {
-                setIsLoading(false)
-                toast.success('upload successfully')
-                form.reset()
-            })
+            .then(imageData => {
+                console.log(imageData)
+                imageOne = imageData.data?.url
+                fetch("https://api.imgbb.com/1/upload?key=63ff49e7f3a9f352605525982cb4b330", {
+                    method: 'POST',
+                    body: formDataTwo
+                })
+                    .then(res => res.json())
+                    .then(imageData => {
+                        console.log(imageData)
+                        imageTwo = imageData.data?.url
+                        fetch("https://api.imgbb.com/1/upload?key=63ff49e7f3a9f352605525982cb4b330", {
+                            method: 'POST',
+                            body: formDataThree
+                        })
+                            .then(res => res.json())
+                            .then(imageData => {
+                                console.log(imageData)
+                                imageThree = imageData.data?.url
+                                const images = [
+                                    {
+                                        original: imageOne,
+                                        thumbnail: imageOne
+                                    },
+                                    {
+                                        original: imageTwo,
+                                        thumbnail: imageTwo
+                                    },
+                                    {
+                                        original: imageThree,
+                                        thumbnail: imageThree
+                                    }
+                                ]
+                                const postInfo = {
+                                    animal, title, color, uploadDate, sellerLocation, sellerName, sellerEmail, sellerImage, phone, price, description, images, status
+                                }
+                                console.log(postInfo);
+                                fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_animals', {
+                                    method: 'POST',
+                                    headers: {
+                                        'content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify(postInfo)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        console.log(data)
+                                        setIsLoading(false)
+                                        toast.success('upload successfully')
+                                        form.reset()
+                                    })
 
+
+                            })
+
+                    })
+
+            })
     }
+
+
     return (
         <div>
             <div data-aos="fade-right" className='flex justify-center lg:justify-center mt-10'>
@@ -77,8 +121,7 @@ const SellAnimal = () => {
                                 <span className="label-text">Animal type</span>
                             </label>
                             <select name='animal' className="select select-bordered w-full">
-                                <option disabled selected>Animal</option>
-                                <option>Cow</option>
+                                <option disabled selected>Cow</option>
                                 <option>Goat</option>
                                 <option>Hen</option>
                                 <option>Duck</option>
@@ -123,7 +166,7 @@ const SellAnimal = () => {
                             </label>
                             <input type="text" placeholder="Description" name='description' className="input input-bordered" required />
                         </div>
-                        <div className="form-control">
+                        {/* <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Image1</span>
                             </label>
@@ -140,6 +183,51 @@ const SellAnimal = () => {
                                 <span className="label-text">Image 3</span>
                             </label>
                             <input type="text" placeholder="third image" name='image3' className="input input-bordered" required />
+                        </div> */}
+                    </div>
+                    <div>
+                        <h1>Images:</h1>
+                        <div id="fileUpload">
+                            <div className="mb-2 block">
+                                <label
+                                    htmlFor="file"
+                                    value="Upload file"
+                                />
+                            </div>
+                            <input
+                                id="file"
+                                type="file"
+                                name='thumbnailOne'
+
+                            />
+                        </div>
+                        <div id="fileUpload">
+                            <div className="mb-2 block">
+                                <label
+                                    htmlFor="file"
+                                    value="Upload file"
+                                />
+                            </div>
+                            <input
+                                id="file"
+                                type="file"
+                                name='thumbnailTwo'
+
+                            />
+                        </div>
+                        <div id="fileUpload">
+                            <div className="mb-2 block">
+                                <label
+                                    htmlFor="file"
+                                    value="Upload file"
+                                />
+                            </div>
+                            <input
+                                id="file"
+                                type="file"
+                                name='thumbnailThree'
+
+                            />
                         </div>
                     </div>
                     {

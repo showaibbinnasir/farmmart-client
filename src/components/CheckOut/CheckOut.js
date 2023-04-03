@@ -16,7 +16,7 @@ const CheckOut = ({ items }) => {
     }
     const orderId = Math.random() * 10000000000000000
     const { user } = useContext(authContext)
-    const uri = `http://localhost:5000/all_users?email=${user?.email}`
+    const uri = `https://farmmart-backend-showaibbinnasir.vercel.app/all_users?email=${user?.email}`
     useEffect(() => {
         fetch(uri)
             .then(res => res.json())
@@ -41,7 +41,7 @@ const CheckOut = ({ items }) => {
         const orders = items;
         const orderDate = new Date()
         const orderDetails = { buyerName, buyerEmail, buyerPhone, gender, order_id, buyerImage, buyerlocation, orderDate, orders }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

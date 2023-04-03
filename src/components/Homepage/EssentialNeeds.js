@@ -14,7 +14,7 @@ const EssentialNeeds = () => {
     }
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/all_needs')
+        fetch('https://farmmart-backend-showaibbinnasir.vercel.app/all_needs')
             .then(res => res.json())
             .then(data => setData(data))
     }, [])

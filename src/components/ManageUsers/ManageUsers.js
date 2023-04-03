@@ -4,11 +4,11 @@ import { useLoaderData } from 'react-router-dom';
 import UserLists from './UserLists';
 
 const ManageUsers = () => {
-    // http://localhost:5000/all_users
+    // https://farmmart-backend-showaibbinnasir.vercel.app/all_users
     const { data: userData = [], refetch, isLoading } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/all_users`)
+            const res = await fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_users`)
             const data = await res.json();
             return data;
         }

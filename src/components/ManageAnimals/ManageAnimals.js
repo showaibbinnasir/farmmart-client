@@ -6,7 +6,7 @@ const ManageAnimals = () => {
     const { data: animalData = [], refetch, isLoading } = useQuery({
         queryKey: ['animalData'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/all_animals`)
+            const res = await fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_animals`)
             const data = await res.json();
             return data;
         }
