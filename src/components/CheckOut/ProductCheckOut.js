@@ -32,8 +32,10 @@ const ProductCheckOut = () => {
         const buyerImage = userData[0]?.userImage;
         const buyerlocation = location;
         const orders = product;
+        const status = false;
+        const sellInfo = false;
         const orderDate = new Date()
-        const orderDetails = { buyerName, buyerEmail, buyerPhone, gender, order_id, buyerImage, buyerlocation, orderDate, orders }
+        const orderDetails = { buyerName, buyerEmail, buyerPhone, gender, order_id, buyerImage, sellInfo, status, buyerlocation, orderDate, orders }
         fetch('https://farmmart-backend-showaibbinnasir.vercel.app/orders', {
             method: 'POST',
             headers: {

@@ -21,6 +21,7 @@ import ManageUsers from "../components/ManageUsers/ManageUsers";
 import ManageNeeds from "../components/ManageNeeds/ManageNeeds";
 import ManageAnimals from "../components/ManageAnimals/ManageAnimals";
 import ProductCheckOut from "../components/CheckOut/ProductCheckOut";
+import ManageOrders from "../components/ManageOrders/ManageOrders";
 
 
 const getFromLocal = localStorage.getItem('cart');
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/manageanimals',
                         element: <ManageAnimals></ManageAnimals>
+                    },
+                    {
+                        path: '/dashboard/manageorders',
+                        element: <ManageOrders></ManageOrders>
                     }
 
                 ]

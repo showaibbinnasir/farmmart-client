@@ -31,6 +31,7 @@ const DashboardLayout = () => {
                                 <li><Link to='/dashboard/manageuser'>Manage User</Link></li>
                                 <li><Link to='/dashboard/manageneeds'>Manage Needs</Link></li>
                                 <li><Link to='/dashboard/manageanimals'>Manage Animals</Link></li>
+                                <li><Link to='/dashboard/manageorders'>Manage Orders</Link></li>
                             </> :
                                 isSeller ?
                                     <>
