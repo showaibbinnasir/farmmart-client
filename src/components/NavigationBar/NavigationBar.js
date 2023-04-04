@@ -121,7 +121,7 @@ const NavigationBar = () => {
                         user?.email ?
                             <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Hi {
                                 user?.photoURL ?
-                                    <img className='w-10 rounded-full ml-2' src={user?.photoURL} alt="" /> : <img className='w-10 rounded-full ml-2' src="imgeerr.jpg" alt="" />
+                                    <img className='w-10 h-10 rounded-full ml-2' src={user?.photoURL} alt="" /> : <img className='w-10 h-10 rounded-full ml-2' src="imgeerr.jpg" alt="" />
                             } <span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label> :
                             <label tabIndex={0} className="btn m-1 bg-transparent border-0 text-white">Login<span className='ml-2'><i class="fa-solid fa-angle-down"></i></span></label>
                     }
@@ -133,7 +133,7 @@ const NavigationBar = () => {
                                         <div>
                                             {
                                                 user?.photoURL ?
-                                                    <img className='w-10 rounded-full ml-2' src={user?.photoURL} alt="" /> : <img className='w-10 rounded-full ml-2' src="imgeerr.jpg" alt="" />
+                                                    <img className='w-10 h-10 rounded-full ml-2' src={user?.photoURL} alt="" /> : <img className='w-10 rounded-full ml-2' src="imgeerr.jpg" alt="" />
                                             }
                                             <h1>{user?.displayName}</h1>
                                         </div>

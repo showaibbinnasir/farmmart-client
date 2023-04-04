@@ -3,18 +3,31 @@ import Posts from './Posts';
 import { useNavigate } from 'react-router-dom';
 
 const AnimalSection = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [isLoadingOne, setIsLoadingOne] = useState(false)
     const [cowData, setCowData] = useState([]);
     const [goatData, setGoatData] = useState([])
+
     useEffect(() => {
+        setIsLoading(true)
         fetch('https://farmmart-backend-showaibbinnasir.vercel.app/three_cow')
+
             .then(res => res.json())
-            .then(data => setCowData(data))
+            .then(data => {
+                setCowData(data)
+                setIsLoading(false)
+            })
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
+        setIsLoadingOne(true)
         fetch('https://farmmart-backend-showaibbinnasir.vercel.app/three_goat')
+
             .then(res => res.json())
-            .then(data => setGoatData(data))
+            .then(data => {
+                setGoatData(data)
+                setIsLoadingOne(false)
+            })
     }, [])
     const navigation = useNavigate()
     const navigate = () => {
@@ -34,13 +47,17 @@ const AnimalSection = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center'>
-                <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        cowData.map((post, i) => <Posts key={i} posts={post}></Posts>)
-                    }
+            {
+                isLoading ? <div className='flex justify-center my-5'>
+                    <progress className="progress w-56"></progress>
+                </div> : <div className='flex justify-center'>
+                    <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        {
+                            cowData.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        }
+                    </div>
                 </div>
-            </div>
+            }
             <div>
                 <div className='grid grid-cols-2 items-center mt-10 mb-10' >
                     <h1 className='text-4xl text-end font-semibold text-[#3F55A5]' >Goat</h1>
@@ -49,13 +66,17 @@ const AnimalSection = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center'>
-                <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        goatData.map((post, i) => <Posts key={i} posts={post}></Posts>)
-                    }
+            {
+                isLoadingOne ? <div className='flex justify-center my-5'>
+                    <progress className="progress w-56"></progress>
+                </div> : <div className='flex justify-center'>
+                    <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        {
+                            goatData.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                        }
+                    </div>
                 </div>
-            </div>
+            }
             <div className='flex justify-center mt-5'>
                 <button onClick={navigate} className='bg-gradient-to-r from-[#3F55A5] to-[#A3519F] text-white px-5 py-3 rounded-tl-xl rounded-br-xl shadow-lg' >Show all products</button>
             </div>

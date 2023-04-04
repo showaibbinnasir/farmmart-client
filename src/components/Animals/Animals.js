@@ -3,15 +3,20 @@ import Posts from '../Homepage/Posts';
 
 const Animals = () => {
     const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const [searchData, setSearchData] = useState('')
     const searchbar = (value) => {
         setSearchData(value)
     }
     useEffect(() => {
+        setIsLoading(true)
         fetch(`https://farmmart-backend-showaibbinnasir.vercel.app/all_animals?searchId=${searchData}`)
             .then(res => res.json())
-            .then(data => setData(data))
-    }, [searchData])
+            .then(data => {
+                setData(data)
+                setIsLoading(false)
+            })
+    },[searchData])
 
     return (
         <div className='bg-white'>
@@ -24,13 +29,21 @@ const Animals = () => {
                     <input onChange={(e) => searchbar(e.target['value'])} type="text" name='searchInput' placeholder="Type here" className="input input-bordered w-[300px] border-[#A3519F]" />
                 </form>
             </div>
-            <div className='flex justify-center'>
-                <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        data.map((post, i) => <Posts key={i} posts={post}></Posts>)
-                    }
-                </div>
-            </div>
+            {
+                isLoading ?
+                    <div className='flex justify-center my-5'>
+                        <progress className="progress w-56"></progress>
+                    </div> :
+                    <div className='flex justify-center'>
+                        <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                            {
+                                data.map((post, i) => <Posts key={i} posts={post}></Posts>)
+                            }
+                        </div>
+                    </div>
+
+            }
+
         </div>
     );
 };
